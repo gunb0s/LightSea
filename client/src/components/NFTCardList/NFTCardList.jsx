@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import NFTCard from "./NFTCard/NFTCard";
+import NFTCard from "../NFTCard/NFTCard";
 
 const NFTContainer = styled.section`
   flex: 1 0 0%;
