@@ -1,0 +1,118 @@
+.navbarWrapper {
+  box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+  max-width: 100vw;
+  height: 72px;
+  top: 0px;
+  position: sticky;
+  z-index: 110;
+  transition: top 0.5s ease 0s;
+  background-color: rgb(255, 255, 255);
+}
+
+.navbar {
+  display: flex;
+  height: 100%;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.navbarLeft {
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  padding-right: 189px;
+  padding-left: 16px;
+}
+
+.logo {
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  font-weight: 500;
+  height: 100%;
+  padding: 8px 0px;
+  position: relative;
+  margin-left: 8px;
+
+  color: rgb(32, 129, 226);
+  text-decoration: none;
+}
+
+.searchBar {
+  display: flex;
+  width: 100%;
+}
+
+.navLink {
+  display: flex;
+  margin: 0px px;
+}
+
+.navLinkLeft,
+.navLinkRight {
+  display: flex;
+}
+
+.leftItem {
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: 72px;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.link {
+  -webkit-box-align: center;
+  align-items: center;
+  color: rgba(4, 17, 29, 0.75);
+  display: flex;
+  height: 100%;
+  padding: 0px 20px;
+  position: relative;
+  width: 100%;
+}
+
+.link:hover {
+  color: rgb(4, 17, 29);
+}
+
+.accountWrapper {
+  margin-left: 10px;
+}
+
+.accountLink {
+  -webkit-box-align: center;
+  align-items: center;
+  color: rgb(112, 122, 131);
+  display: flex;
+  height: 100%;
+  padding: 0px 20px;
+  position: relative;
+  width: 100%;
+}
+
+.walletLink {
+  -webkit-box-align: center;
+  align-items: center;
+  color: rgb(112, 122, 131);
+  display: flex;
+  height: 100%;
+  padding: 0px 20px;
+  position: relative;
+  width: 100%;
+  background: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  border: 0px;
+}
+
+.otherlink:hover {
+  color: rgb(4, 17, 29);
+}
