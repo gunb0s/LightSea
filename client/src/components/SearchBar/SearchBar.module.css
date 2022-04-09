@@ -1,0 +1,42 @@
+.searchContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.searchWrapper {
+  display: flex;
+  height: 45px;
+  justify-content: center;
+}
+
+.search {
+  cursor: text;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  border: 1px solid rgb(229, 232, 235);
+  width: 100%;
+  max-width: 768px;
+  line-height: 26px;
+  padding: 8px;
+
+  box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+}
+.searchIcon {
+  margin-right: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.serachInput {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: inherit;
+  line-height: inherit;
+  min-height: inherit;
+}
