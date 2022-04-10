@@ -3,9 +3,12 @@
 # First Blockchain Team Project - [ LIGHT SEA ]
 
 ## HeukKell02
-### 역할 : ???
-### 업무
+
+### 김보성
+
+    역할 : 프론트엔드
+    업무 : 지갑연결 부분 구현
+
+### 윤다미
 - front
 - back
-- 
-----------------------------------
