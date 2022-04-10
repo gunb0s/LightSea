@@ -2,7 +2,10 @@
 
 # First Blockchain Team Project - [ LIGHT SEA ]
 
-## HeukKell02
+## Frontend / Backend
+- front 준영 보성
+- back 경식 다미
+----------------------------------
 
 ### 김경식
 역할 : 백엔드
