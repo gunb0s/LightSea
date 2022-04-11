@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import MainLeft from "../components/MainLeft/MainLeft";
+import MainRight from "../components/MainRight/MainRight";
 import Footer from "../components/Footer/Footer";
 import Navigation from "../components/Navigation/Navigation";
 
@@ -17,7 +18,7 @@ const Container = styled.div`
 `;
 
 const LeftContainer = styled.div`
-  flex: 5 1 0;
+  flex: 6 1 0;
 `;
 
 const RightContainer = styled.div`
@@ -33,10 +34,12 @@ const Home = () => {
           <LeftContainer>
             <MainLeft></MainLeft>
           </LeftContainer>
-          <RightContainer></RightContainer>
+          <RightContainer>
+            <MainRight></MainRight>
+          </RightContainer>
         </Container>
-        <Footer />
       </ContainerWrapper>
+      <Footer />
     </>
   );
 };

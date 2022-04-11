@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
 import Detail from "./pages/Detail";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export const Context = createContext();
 

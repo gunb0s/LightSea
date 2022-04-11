@@ -40,6 +40,10 @@
   text-decoration: none;
 }
 
+.logo:hover > * {
+  background-color: rgb(4, 17, 29);
+}
+
 .logo:hover {
   color: rgb(4, 17, 29);
 }

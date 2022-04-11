@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import ControlledCarousel from "../ControlledCarousel/ControlledCarousel";
 
 const ContainerWrapper = styled.div`
-  background-image: url("sampleImage/Resource/LeftMain.jpg");
-  background-size: cover;
-  background-position: center center;
   height: 100%;
 `;
 
@@ -27,32 +25,26 @@ const Title = styled.span`
   word-spacing: 3.5rem;
 `;
 
-const DescriptionWrapper = styled.div`
+const CarouselWrapper = styled.div`
   position: absolute;
-  top: 48%;
-`;
-const Description = styled.span`
-  color: rgb(176, 178, 179);
-  font-size: 1.4rem;
-  letter-spacing: 0.5rem;
+  top: 25%;
+  width: 300px;
+  height: 300px;
 `;
 
-const MainLeft = () => {
+const MainRight = () => {
   return (
     <ContainerWrapper>
       <Container>
         <TitleWrapper>
-          <Title>LIGHT SEA</Title>
+          <Title>NFTs</Title>
         </TitleWrapper>
-
-        <DescriptionWrapper>
-          <Description>
-            Space Travel NFT Marketplace For Space Traveler
-          </Description>
-        </DescriptionWrapper>
+        <CarouselWrapper>
+          <ControlledCarousel />
+        </CarouselWrapper>
       </Container>
     </ContainerWrapper>
   );
 };
 
-export default MainLeft;
+export default MainRight;
