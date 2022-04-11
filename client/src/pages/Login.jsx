@@ -18,9 +18,16 @@ const Main = styled.div`
 
 const Login = () => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: "rgb(35, 39, 40)",
+        height: "100vh",
+      }}
+    >
       <Navigation />
-      <Container>
+      <Container style={{ flex: "1 1 0" }}>
         <Main>
           <WalletLogin />
         </Main>

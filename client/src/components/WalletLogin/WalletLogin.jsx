@@ -10,7 +10,7 @@ const Container = styled.div`
 const Title = styled.h1`
   font-weight: 600;
   font-size: 24px;
-  color: rgb(4, 17, 29);
+  color: white;
 `;
 
 const Desc = styled.p`
@@ -154,7 +154,7 @@ const WalletLogin = () => {
                     style={{
                       fontWeight: 700,
                       fontSize: "14px",
-                      color: "rgb(4, 17, 29)",
+                      color: "white",
                     }}
                   >
                     MetaMask
@@ -177,7 +177,7 @@ const WalletLogin = () => {
                     style={{
                       fontWeight: 700,
                       fontSize: "14px",
-                      color: "rgb(4, 17, 29)",
+                      color: "white",
                     }}
                   >
                     WalletConnect
@@ -195,7 +195,7 @@ const WalletLogin = () => {
                     style={{
                       fontWeight: 700,
                       fontSize: "14px",
-                      color: "rgb(4, 17, 29)",
+                      color: "white",
                     }}
                   >
                     Phantom
@@ -218,7 +218,7 @@ const WalletLogin = () => {
                     style={{
                       fontWeight: 700,
                       fontSize: "14px",
-                      color: "rgb(4, 17, 29)",
+                      color: "white",
                     }}
                   >
                     Coinbase Wallet

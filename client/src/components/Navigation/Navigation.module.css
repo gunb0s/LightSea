@@ -6,7 +6,7 @@
   position: sticky;
   z-index: 110;
   transition: top 0.5s ease 0s;
-  background-color: rgb(255, 255, 255);
+  background-color: transparent;
 }
 
 .navbar {
@@ -36,8 +36,12 @@
   position: relative;
   margin-left: 8px;
 
-  color: rgb(32, 129, 226);
+  color: whitesmoke;
   text-decoration: none;
+}
+
+.logo:hover {
+  color: rgb(4, 17, 29);
 }
 
 .searchBar {
@@ -68,7 +72,7 @@
 
 .link {
   align-items: center;
-  color: rgba(4, 17, 29, 0.75);
+  color: whitesmoke;
   display: flex;
   height: 100%;
   padding: 0px 20px;
@@ -88,7 +92,7 @@
 .accountLink {
   -webkit-box-align: center;
   align-items: center;
-  color: rgb(112, 122, 131);
+  color: whitesmoke;
   display: flex;
   height: 100%;
   padding: 0px 20px;
@@ -96,10 +100,14 @@
   width: 100%;
 }
 
+.accountLink:hover {
+  color: rgb(4, 17, 29);
+}
+
 .walletLink {
   -webkit-box-align: center;
   align-items: center;
-  color: rgb(112, 122, 131);
+  color: whitesmoke;
   display: flex;
   height: 100%;
   padding: 0px 20px;

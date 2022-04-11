@@ -6,7 +6,7 @@ import Footer from "../components/Footer/Footer";
 
 const Explore = () => {
   return (
-    <div>
+    <div style={{ backgroundColor: "rgb(35, 39, 40)" }}>
       <Navigation />
       <div style={{ display: "flex" }}>
         <Filter />
