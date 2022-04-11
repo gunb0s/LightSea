@@ -2,6 +2,7 @@ import React from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import styles from "./NFTCard.module.css";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const EthPrice = styled.div`
   display: flex;
@@ -12,6 +13,11 @@ const EthPrice = styled.div`
 `;
 
 const NFTCard = ({ idx }) => {
+  const navigate = useNavigate();
+  const onCardLinkClik = () => {
+    navigate("/assets/0x1");
+  };
+
   return (
     <Card className={styles.card}>
       <Card.Img variant="top" src={`sampleImage/N${101 + idx}.png`} />
@@ -31,13 +37,13 @@ const NFTCard = ({ idx }) => {
                 height: "14px",
               }}
             ></img>
-            <div style={{ "margin-left": "0.3em" }}>100</div>
+            <div style={{ marginLeft: "0.3em" }}>100</div>
           </EthPrice>
         </ListGroupItem>
         <ListGroupItem>7 days left</ListGroupItem>
       </ListGroup>
       <Card.Body>
-        <Card.Link href="#">Card Link</Card.Link>
+        <Card.Link onClick={onCardLinkClik}>Card Link</Card.Link>
         <Card.Link href="#">Another Link</Card.Link>
       </Card.Body>
     </Card>

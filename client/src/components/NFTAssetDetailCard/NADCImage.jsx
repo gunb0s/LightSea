@@ -42,9 +42,14 @@ const NADCImage = () => {
       <ImageWrapper>
         <ImageMain>
           <Image>
-            <img
-              src="sampleImage/N101.png"
-              alt="nft"
+            <video
+              poster="https://lh3.googleusercontent.com/vbEAsCFPx1IiwjirVUDS8TQGOOKWjRX7SKno5WReBc6nQZ3haTKq4zcSfLOqPxw8jkSMM0ZllpBsLoUF3AAYKn_1fH_V4m58OMnW"
+              preload="metadata"
+              autoPlay
+              controls="true"
+              controlsList="nodownload"
+              playsInline
+              loop
               style={{
                 width: "520px",
                 height: "520px",
@@ -53,7 +58,12 @@ const NADCImage = () => {
                 borderRadius: "initial",
                 opacity: 1,
               }}
-            />
+            >
+              <source
+                src="https://openseauserdata.com/files/3565db33a856b19f48396062e59e6d62.mp4#t=0.001"
+                type="video/mp4"
+              />
+            </video>
           </Image>
         </ImageMain>
       </ImageWrapper>
