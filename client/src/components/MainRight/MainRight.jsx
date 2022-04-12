@@ -28,8 +28,8 @@ const Title = styled.span`
 const CarouselWrapper = styled.div`
   position: absolute;
   top: 25%;
-  width: 300px;
-  height: 300px;
+  width: 650px;
+  height: 650px;
 `;
 
 const MainRight = () => {

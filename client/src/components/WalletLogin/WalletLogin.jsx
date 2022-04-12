@@ -145,7 +145,16 @@ const WalletLogin = () => {
         <div style={{ marginTop: "24px", marginBottom: "72px" }}>
           <WalletList>
             <div style={{ width: "100%" }}>
-              <WalletButton>
+              <WalletButton
+                onClick={async () => {
+                  if (typeof window.ethereum !== "undefined") {
+                    const accounts = await window.ethereum.request({
+                      method: "eth_requestAccounts",
+                    });
+                    console.log(accounts[0]);
+                  }
+                }}
+              >
                 <WalletLogoWrapper>
                   <WalletLogo src="https://opensea.io/static/images/logos/metamask-alternative.png" />
                 </WalletLogoWrapper>

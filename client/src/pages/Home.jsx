@@ -1,28 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import MainLeft from "../components/MainLeft/MainLeft";
-import MainRight from "../components/MainRight/MainRight";
 import Footer from "../components/Footer/Footer";
 import Navigation from "../components/Navigation/Navigation";
 
 const ContainerWrapper = styled.div`
   width: 100%;
-  height: 150vh;
   margin: 0px;
+  height: 300vh;
   background-color: rgb(35, 39, 40);
 `;
 
 const Container = styled.div`
-  min-height: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   display: flex;
-`;
-
-const LeftContainer = styled.div`
-  flex: 6 1 0;
-`;
-
-const RightContainer = styled.div`
-  flex: 5 1 0;
 `;
 
 const Home = () => {
@@ -31,12 +25,7 @@ const Home = () => {
       <ContainerWrapper>
         <Navigation />
         <Container>
-          <LeftContainer>
-            <MainLeft></MainLeft>
-          </LeftContainer>
-          <RightContainer>
-            <MainRight></MainRight>
-          </RightContainer>
+          <MainLeft />
         </Container>
       </ContainerWrapper>
       <Footer />

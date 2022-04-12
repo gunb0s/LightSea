@@ -25,7 +25,7 @@ const NFTCard = ({ idx }) => {
         <Card.Title>Collection Name</Card.Title>
         <Card.Text>NFT Name</Card.Text>
       </Card.Body>
-      <ListGroup className="list-group-flush">
+      <ListGroup className={`list-group-flush ${styles.list}`}>
         <ListGroupItem>Top Bid</ListGroupItem>
         <ListGroupItem>
           <EthPrice>
