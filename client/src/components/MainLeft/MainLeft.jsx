@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 const ContainerWrapper = styled.div`
-  width: 50%;
+  width: 80vw;
   height: 100%;
-  background-color: white;
+  background-color: rgb(35, 39, 40);
 `;
 
 const Container = styled.div`
   background-image: url("sampleImage/Resource/MainBG.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center center;
   height: 100%;
   width: 100%;
@@ -22,42 +23,62 @@ const Container = styled.div`
 
 const TitleWrapper = styled.div`
   position: relative;
-  top: 3%;
+  top: 10%;
 `;
 const Title = styled.span`
   color: white;
-  font-size: 5.6rem;
-  letter-spacing: 3.3rem;
+  font-size: 3.5rem;
+  letter-spacing: 3rem;
+  font-weight: 300;
+  font-family: "Englisgh Gilroy-Light";
 `;
 
 const DescWrapper = styled.div`
   position: relative;
-  top: 20%;
+  top: 30%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
-const Desc = styled.span`
+
+const DescTitle = styled.div`
+  color: white;
+  font-size: 2rem;
+  letter-spacing: 0.5rem;
+  font-family: "Englisgh Gilroy-Light";
+  font-weight: 200;
+  width: 80%;
+  border-bottom: 2px solid gray;
+  padding-bottom: 3rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Desc = styled.pre`
   color: white;
   font-size: 1.5rem;
-  letter-spacing: 0.5rem;
+  font-family: "Korean Cafe24SsurroundAir";
+  font-weight: 100;
+  line-height: 3rem;
+  width: 80%;
+  padding-top: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
 `;
 
 const GalleryContainer = styled.div`
   position: relative;
-  top: 45%;
+  top: 40%;
   width: 100%;
-`;
-const GalleryTabWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  widht: 100%;
-  margin-right: 5%;
-  margin-left: 5%;
-  padding-bottom: 2%;
-  border-bottom: 3px solid gray;
-`;
-const GalleryTab = styled.span`
-  font-size: 2rem;
-  color: white;
-  letter-spacing: 0.7rem;
 `;
 
 const GalleryTitleWrapper = styled.div`
@@ -65,14 +86,19 @@ const GalleryTitleWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  padding-top: 5%;
-  padding-bottom: 5%;
 `;
 const GalleryTitle = styled.span`
   color: white;
   font-size: 4rem;
-  letter-spacing: 0.9rem;
+  font-family: "Englisgh Gilroy-Light";
+  font-weight: 200;
+  letter-spacing: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding-bottom: 3rem;
+  border-bottom: 2px solid gray;
 `;
 
 const GalleryWrapper = styled.div`
@@ -80,10 +106,12 @@ const GalleryWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
 `;
 
 const Gallery = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -94,8 +122,20 @@ const NFT = styled.img.attrs((props) => ({
   src: `sampleImage/Resource/${props.idx}.jpg`,
   alt: "nft",
 }))`
-  width: 220px;
-  height: 280px;
+  width: 260px;
+  height: 300px;
+`;
+
+const Traveler = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Korean Cafe24SsurroundAir";
+  font-weight: light;
+  color: white;
+  font-size: 2rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 `;
 
 const MainLeft = () => {
@@ -106,24 +146,46 @@ const MainLeft = () => {
           <Title>LIGHT SEA</Title>
         </TitleWrapper>
         <DescWrapper>
-          <Desc>Space Travel NFT Marketplace For Space Traveler</Desc>
+          <DescTitle>Space Travel NFT Marketplace For Space Traveler</DescTitle>
+          <Desc>
+            LIGHT SEA는 우주 여행자들을 위한 <br />
+            국내 유일 우주 관광 산업 <br />
+            NFT MARKET PLACE입니다 <br />
+            <br />
+            LIGHT SEA는 우주 여행자들의 가볍고 즐거운 행성 여행 라이프 위해
+            <br />
+            NFT소유자들에게 우주 여행 관련 다양한 혜택과 권리를 제공합니다
+            <br />
+          </Desc>
         </DescWrapper>
         <GalleryContainer>
-          <GalleryTabWrapper>
-            <GalleryTab>NFTs</GalleryTab>
-            <GalleryTab>Use</GalleryTab>
-            <GalleryTab>Service</GalleryTab>
-          </GalleryTabWrapper>
           <GalleryTitleWrapper>
-            <GalleryTitle>NFTs</GalleryTitle>
+            <GalleryTitle>NFT</GalleryTitle>
           </GalleryTitleWrapper>
           <GalleryWrapper>
             <Gallery>
-              {new Array(6).fill(0).map((_, idx) => {
+              {new Array(8).fill(0).map((_, idx) => {
                 return <NFT idx={idx + 1} />;
               })}
             </Gallery>
           </GalleryWrapper>
+        </GalleryContainer>
+        <GalleryContainer>
+          <GalleryTitleWrapper>
+            <GalleryTitle
+              style={{
+                letterSpacing: "0.5rem",
+                fontSize: "2rem",
+                fontWeight: 100,
+              }}
+            >
+              SPACE TRAVELER
+            </GalleryTitle>
+          </GalleryTitleWrapper>
+          <Traveler>임준영</Traveler>
+          <Traveler>김보성</Traveler>
+          <Traveler>윤다미</Traveler>
+          <Traveler>김경식</Traveler>
         </GalleryContainer>
       </Container>
     </ContainerWrapper>

@@ -1,3 +1,18 @@
+@font-face {
+  font-family: "Korean Cafe24SsurroundAir";
+  src: url("./font/Cafe24SsurroundAir.ttf");
+}
+
+@font-face {
+  font-family: "Englisgh Gilroy-ExtraBold";
+  src: url("./font/Gilroy-ExtraBold.otf");
+}
+
+@font-face {
+  font-family: "English Gilroy-Light";
+  src: url("./font/Gilroy-Light.otf");
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

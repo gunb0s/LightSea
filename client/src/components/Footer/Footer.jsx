@@ -39,7 +39,11 @@ const Footer = () => {
               Join the community
             </div>
             <div className={styles.joinLinks}>
-              <a className={styles.joinLinkWrapper}>
+              <a
+                href="https://github.com/HeukKell02/beb-03-LIGHTSEA"
+                target="blank"
+                className={styles.joinLinkWrapper}
+              >
                 <div className={styles.joinLink}>
                   <GitHub className={styles.link} />
                 </div>
