@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "../components/Navigation/Navigation";
 import NFTAssetDetailCard from "../components/NFTAssetDetailCard/NFTAssetDetailCard";
 import styled from "styled-components";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -16,7 +17,22 @@ const Main = styled.div`
   flex: 1 1 0%;
 `;
 
-const Detail = () => {
+const Detail = ({ contract, tokenID }) => {
+  const [nftData, setNftData] = useState({});
+
+  const getNFTDetail = async () => {
+    try {
+      const { data } = await axios.get(`/api/v1/${contract}/${tokenID}`);
+      setNftData((prev) => data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    // getNFTDetail()
+  }, []);
+
   return (
     <Container>
       <Navigation />
