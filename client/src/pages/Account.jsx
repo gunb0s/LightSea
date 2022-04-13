@@ -22,12 +22,13 @@ const Account = ({ address }) => {
   useEffect(() => {
     // getNFTOfAccount();
   }, []);
+  const CSS_AccountBG = "rgb(20,20,20)";
 
   return (
-    <div>
+    <div style={{backgroundColor:CSS_AccountBG}}>
       <Navigation />
-      <ProfileBanner />
-      <div style={{ display: "flex" }}>
+      <ProfileBanner CSS_AccountBG={CSS_AccountBG}/>
+      <div style={{ display: "flex", backgroundColor:CSS_AccountBG}}>
         <Filter />
         <NFTCardList />
       </div>

@@ -29,7 +29,7 @@ const Navigation = () => {
         <div className={styles.navbarLeft}>
           <Link className={styles.logo} to="/">
             <Logo />
-            LightSea
+            <span style={{marginLeft:'10px',fontFamily: "Englisgh Gilroy-Light",letterSpacing:'1rem',textDecoration:"none"}}>LIGHTSEA</span>
           </Link>
         </div>
         <div className={styles.searchBar}>

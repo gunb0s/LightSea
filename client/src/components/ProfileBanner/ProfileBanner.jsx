@@ -2,6 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import ProfilePageNavbar from '../ProfilePageNavbar/ProfilePageNavbar';
 
+const CSS_fontColor="rgb(255,255,255)";
+const CSS_backgroundColor="rgb(20,20,20)";
+//color:fontColor;
+//background-color:_backgorundColor;
+
 const BackgroundWrapper = styled.div`
   position: relative;
   z-index: 0;
@@ -10,6 +15,8 @@ const BackgroundWrapper = styled.div`
   min-height: 120px;
   backgroundwrapper-color: rgb(229, 232, 235);
   overflow: hidden;
+  justify-content: center;
+  background-color:rgb(28,28,28) ;
 `;
 
 const AccountHeader = styled.div`
@@ -55,6 +62,7 @@ const Alias = styled.div`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color:white;
 `;
 
 const AccountWrapper = styled.div`
@@ -74,13 +82,15 @@ const Account = styled.button`
   border: 0px;
   background: inherit;
   margin-right: 8px;
+  color:rgb(200,200,200) ;
 `;
 
 const AddressWrapper = styled.div`
   display: flex;
   padding: 4px 8px;
-  border: 1px solid rgb(229, 232, 235);
+  /* border: 1px solid rgb(229, 232, 235); */
   border-radius: 16px;
+  background-color:rgb(100,100,100) ;
 `;
 
 const AddressBtn = styled.button`
@@ -100,6 +110,7 @@ const AddressBtn = styled.button`
 
 const Address = styled.div`
   margin-right: 8px;
+  color:rgb(200,200,200);
 `;
 
 const CreatedAt = styled.span`
@@ -109,16 +120,17 @@ const CreatedAt = styled.span`
   margin-top: 12px;
 `;
 
+// style={{ width: '100%' }}
 const ProfileBanner = () => {
   return (
-    <div>
+    <div  style={{backgroundColor:'rgb(20,20,20)'}}>
       <BackgroundWrapper>
-        <img src="sampleImage/bg.png" alt="bg" style={{ width: '100%' }} />
+        <img src="sampleImage/AccountBackground.jpg" alt="bg" style={{width:'100vw'}}/>
       </BackgroundWrapper>
       <AccountHeader>
         <ImageContainer>
           <img
-            src="sampleImage/profile.png"
+            src="sampleImage/profile2.png"
             alt="profile"
             style={{ width: '100%', height: '100%' }}
           />

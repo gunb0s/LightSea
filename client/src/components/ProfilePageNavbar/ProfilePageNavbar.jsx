@@ -32,8 +32,10 @@ const Menu = styled.a`
   width: 100%;
   border-radius: 10px;
   transition: color 0.4s ease 0s, background-color 0.4s ease 0s;
-  color: rgb(53, 56, 64);
-  background-color: rgb(255, 255, 255);
+  /* color: rgb(53, 56, 64); */
+  color:rgb(230,230,230);
+  /* background-color: rgb(255, 255, 255); */
+  background-color:rgb(20,20,20);
   text-decoration: none;
 
   font-size: 16px;

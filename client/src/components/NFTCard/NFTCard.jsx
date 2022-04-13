@@ -18,12 +18,17 @@ const NFTCard = ({ idx }) => {
     navigate("/assets/0x1");
   };
 
+  const CSS_cardLinkAnother={ marginLeft:'90px', fontWeight:'500', textDecoration:'none', color:"rgb(200,200,200)"};
+  const CSS_cardLink={fontWeight:'500', textDecoration:'none', color:"rgb(200,200,200)"};
+  const CSS_CollectionName={marginBottom:"2px",fontSize:'14px'}
+  const CSS_NFTAssetName={paddingTop:"0",paddingBottom:"0",marginTop:"2px",fontSize:'23px',fontWeight:'700'}  
+
   return (
     <Card className={styles.card}>
       <Card.Img variant="top" src={`sampleImage/N${101 + idx}.png`} />
       <Card.Body>
-        <Card.Title>Collection Name</Card.Title>
-        <Card.Text>NFT Name</Card.Text>
+        <Card.Title style={CSS_CollectionName}>Collection Name</Card.Title>
+        <Card.Text style={CSS_NFTAssetName}>NFT Name</Card.Text>
       </Card.Body>
       <ListGroup className={`list-group-flush ${styles.list}`}>
         <ListGroupItem>Top Bid</ListGroupItem>
@@ -43,8 +48,8 @@ const NFTCard = ({ idx }) => {
         <ListGroupItem>7 days left</ListGroupItem>
       </ListGroup>
       <Card.Body>
-        <Card.Link onClick={onCardLinkClik}>Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
+        <Card.Link style={CSS_cardLink} onClick={onCardLinkClik}>Card Link</Card.Link>
+        <Card.Link style={CSS_cardLinkAnother} href="#">Another Link</Card.Link>
       </Card.Body>
     </Card>
   );

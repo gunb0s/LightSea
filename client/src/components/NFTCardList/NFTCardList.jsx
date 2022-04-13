@@ -19,13 +19,15 @@ const NFTGallery = styled.div`
   gap: 1rem;
 `;
 
+const CSS_NFTCard={backgroundColor:"white"}
+
 const NFTCardList = () => {
   return (
     <NFTContainer>
       <NFTGalleryWrapper>
         <NFTGallery>
           {new Array(10).fill(0).map((v, idx) => (
-            <NFTCard key={idx} idx={idx} />
+            <NFTCard style={CSS_NFTCard} key={idx} idx={idx} />
           ))}
         </NFTGallery>
       </NFTGalleryWrapper>

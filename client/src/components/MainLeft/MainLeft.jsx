@@ -11,7 +11,7 @@ const Container = styled.div`
   background-image: url("sampleImage/Resource/MainBG.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
+  /* background-position: center center; */
   height: 100%;
   width: 100%;
 
@@ -23,7 +23,8 @@ const Container = styled.div`
 
 const TitleWrapper = styled.div`
   position: relative;
-  top: 10%;
+  /* top: 10%; */
+  margin-top: 500px;
 `;
 const Title = styled.span`
   color: white;
@@ -31,11 +32,13 @@ const Title = styled.span`
   letter-spacing: 3rem;
   font-weight: 300;
   font-family: "Englisgh Gilroy-Light";
+  user-select: none;
+
 `;
 
 const DescWrapper = styled.div`
   position: relative;
-  top: 30%;
+  top: 20%;
   width: 100%;
 
   display: flex;
@@ -52,19 +55,22 @@ const DescTitle = styled.div`
   font-weight: 200;
   width: 80%;
   border-bottom: 2px solid gray;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
+  user-select: none;
 `;
 
 const Desc = styled.pre`
-  color: white;
-  font-size: 1.5rem;
+  color: rgb(100,100,100);
+  font-size: 2rem;
   font-family: "Korean Cafe24SsurroundAir";
   font-weight: 100;
-  line-height: 3rem;
+  letter-spacing: 0.2rem;
+  line-height: 5rem;
   width: 80%;
   padding-top: 1rem;
 
@@ -73,11 +79,12 @@ const Desc = styled.pre`
   align-items: center;
 
   text-align: center;
+  user-select: none;
 `;
 
 const GalleryContainer = styled.div`
   position: relative;
-  top: 40%;
+  top: 25%;
   width: 100%;
 `;
 
@@ -97,8 +104,10 @@ const GalleryTitle = styled.span`
   justify-content: center;
   align-items: center;
   width: 80%;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
   border-bottom: 2px solid gray;
+
+  user-select: none;
 `;
 
 const GalleryWrapper = styled.div`
@@ -132,7 +141,7 @@ const Traveler = styled.div`
   align-items: center;
   font-family: "Korean Cafe24SsurroundAir";
   font-weight: light;
-  color: white;
+  color: rgb(150,150,150);
   font-size: 2rem;
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -143,7 +152,7 @@ const MainLeft = () => {
     <ContainerWrapper>
       <Container>
         <TitleWrapper>
-          <Title>LIGHT SEA</Title>
+          {/* <Title>LIGHTSEA</Title> */}
         </TitleWrapper>
         <DescWrapper>
           <DescTitle>Space Travel NFT Marketplace For Space Traveler</DescTitle>

@@ -1,7 +1,9 @@
 .card {
   cursor: pointer;
   transition: all 0.3s ease 0s;
-  background-color: rgb(52, 57, 60);
+  /* background-color: rgb(52, 57, 60); */
+  background-color: rgb(148, 148, 148,0.8);
+  text-decoration: none;
 }
 
 .card:hover {
@@ -9,5 +11,6 @@
 }
 
 .list > div {
-  background-color: rgb(52, 57, 60);
+  /* background-color: rgb(52, 57, 60); */
+  background-color: rgb(148, 148, 148,0.8);
 }
