@@ -56,7 +56,7 @@ const Filter = () => {
                       <input
                         className={styles.price_currency}
                         style={{ cursor: "pointer" }}
-                        value="United States Dollar (USD)"
+                        defaultValue="United States Dollar (USD)"
                       />
                       <div className={styles.price_arrow}>
                         <KeyboardArrowDown />

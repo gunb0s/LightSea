@@ -1,8 +1,13 @@
 .card {
   cursor: pointer;
   transition: all 0.3s ease 0s;
+  background-color: rgb(52, 57, 60);
 }
 
 .card:hover {
   box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+}
+
+.list > div {
+  background-color: rgb(52, 57, 60);
 }
