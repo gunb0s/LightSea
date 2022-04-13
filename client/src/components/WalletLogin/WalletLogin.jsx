@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-
+import React from 'react';
+import styled from 'styled-components';
+import { useWeb3 } from '@3rdweb/hooks';
 const Container = styled.div`
   margin-right: auto;
   margin-left: auto;
@@ -74,7 +74,7 @@ const WalletLogoWrapper = styled.div`
 
 const WalletLogo = styled.img.attrs((props) => ({
   src: props.src,
-  alt: "logo",
+  alt: 'logo',
 }))`
   object-fit: contain;
   height: 24px;
@@ -135,6 +135,8 @@ const AdditionalSolana = styled(AdditionalPopualr)`
 `;
 
 const WalletLogin = () => {
+  // ThirdWeb Metamask 연동
+  const { address, connectWallet } = useWeb3();
   return (
     <Container>
       <Title>Connect you wallet</Title>
@@ -142,18 +144,14 @@ const WalletLogin = () => {
         <div>
           <Desc>Connect with one of our available wallet providers.</Desc>
         </div>
-        <div style={{ marginTop: "24px", marginBottom: "72px" }}>
+        <div style={{ marginTop: '24px', marginBottom: '72px' }}>
           <WalletList>
-            <div style={{ width: "100%" }}>
+            <div style={{ width: '100%' }}>
               {/* 메타마스크 지갑 연결 부분 */}
               <WalletButton
-                onClick={async () => {
-                  if (typeof window.ethereum !== "undefined") {
-                    const accounts = await window.ethereum.request({
-                      method: "eth_requestAccounts",
-                    });
-                    console.log(accounts[0]);
-                  }
+                onClick={() => {
+                  connectWallet('injected');
+                  console.log(address);
                 }}
               >
                 <WalletLogoWrapper>
@@ -163,8 +161,8 @@ const WalletLogin = () => {
                   <span
                     style={{
                       fontWeight: 700,
-                      fontSize: "14px",
-                      color: "white",
+                      fontSize: '14px',
+                      color: 'white',
                     }}
                   >
                     MetaMask
@@ -177,7 +175,7 @@ const WalletLogin = () => {
                 </AdditionalWrapper>
               </WalletButton>
             </div>
-            <div style={{ width: "100%" }}>
+            <div style={{ width: '100%' }}>
               <WalletButton>
                 <WalletLogoWrapper>
                   <WalletLogo src="https://static.opensea.io/logos/walletconnect-alternative.png" />
@@ -186,8 +184,8 @@ const WalletLogin = () => {
                   <span
                     style={{
                       fontWeight: 700,
-                      fontSize: "14px",
-                      color: "white",
+                      fontSize: '14px',
+                      color: 'white',
                     }}
                   >
                     WalletConnect
@@ -195,7 +193,7 @@ const WalletLogin = () => {
                 </WalletTitle>
               </WalletButton>
             </div>
-            <div style={{ width: "100%" }}>
+            <div style={{ width: '100%' }}>
               <WalletButton>
                 <WalletLogoWrapper>
                   <WalletLogo src="	https://opensea.io/static/images/logos/phantom.svg" />
@@ -204,8 +202,8 @@ const WalletLogin = () => {
                   <span
                     style={{
                       fontWeight: 700,
-                      fontSize: "14px",
-                      color: "white",
+                      fontSize: '14px',
+                      color: 'white',
                     }}
                   >
                     Phantom
@@ -218,7 +216,7 @@ const WalletLogin = () => {
                 </AdditionalWrapper>
               </WalletButton>
             </div>
-            <div style={{ width: "100%" }}>
+            <div style={{ width: '100%' }}>
               <WalletButton>
                 <WalletLogoWrapper>
                   <WalletLogo src="	https://static.opensea.io/logos/walletlink-alternative.png" />
@@ -227,8 +225,8 @@ const WalletLogin = () => {
                   <span
                     style={{
                       fontWeight: 700,
-                      fontSize: "14px",
-                      color: "white",
+                      fontSize: '14px',
+                      color: 'white',
                     }}
                   >
                     Coinbase Wallet

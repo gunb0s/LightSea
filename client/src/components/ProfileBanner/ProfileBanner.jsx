@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import ProfilePageNavbar from "../ProfilePageNavbar/ProfilePageNavbar";
+import React from 'react';
+import styled from 'styled-components';
+import ProfilePageNavbar from '../ProfilePageNavbar/ProfilePageNavbar';
 
 const BackgroundWrapper = styled.div`
   position: relative;
@@ -113,14 +113,14 @@ const ProfileBanner = () => {
   return (
     <div>
       <BackgroundWrapper>
-        <img src="sampleImage/bg.png" alt="bg" style={{ width: "100%" }} />
+        <img src="sampleImage/bg.png" alt="bg" style={{ width: '100%' }} />
       </BackgroundWrapper>
       <AccountHeader>
         <ImageContainer>
           <img
             src="sampleImage/profile.png"
             alt="profile"
-            style={{ width: "100%", height: "100%" }}
+            style={{ width: '100%', height: '100%' }}
           />
         </ImageContainer>
         <Alias>Wartortle</Alias>
@@ -131,7 +131,7 @@ const ProfileBanner = () => {
               <img
                 src="https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg"
                 alt="eth"
-                style={{ width: "12px", height: "22px" }}
+                style={{ width: '12px', height: '22px' }}
               />
             </Account>
             <AddressBtn>
