@@ -145,6 +145,7 @@ const WalletLogin = () => {
         <div style={{ marginTop: "24px", marginBottom: "72px" }}>
           <WalletList>
             <div style={{ width: "100%" }}>
+              {/* 메타마스크 지갑 연결 부분 */}
               <WalletButton
                 onClick={async () => {
                   if (typeof window.ethereum !== "undefined") {
