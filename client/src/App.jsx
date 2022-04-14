@@ -18,7 +18,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route exact path="/explore" element={<Explore />} />
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/account" element={<Account />} />
+          <Route exact path="/account/:address" element={<Account />} />
           <Route path="/assets/:contract/:tokenId" element={<Detail />} />
         </Routes>
       </Context.Provider>

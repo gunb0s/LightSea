@@ -8,7 +8,7 @@ const ContainerWrapper = styled.div`
 `;
 
 const Container = styled.div`
-  background-image: url("sampleImage/Resource/MainBG.jpg");
+  background-image: url("/sampleImage/Resource/MainBG.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   /* background-position: center center; */

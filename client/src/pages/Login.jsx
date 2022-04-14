@@ -24,7 +24,7 @@ const Login = () => {
 
   useEffect(() => {
     if (address !== "") {
-      navigate("/");
+      navigate(`/account/${address}`);
     }
   });
 

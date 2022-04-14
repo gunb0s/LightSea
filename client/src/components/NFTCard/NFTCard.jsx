@@ -40,7 +40,7 @@ const NFTCard = ({ idx }) => {
 
   return (
     <Card className={styles.card}>
-      <Card.Img variant="top" src={`sampleImage/N${101 + idx}.png`} />
+      <Card.Img variant="top" src={`/sampleImage/N${101 + idx}.png`} />
       <Card.Body>
         <Card.Title style={CSS_CollectionName}>Collection Name</Card.Title>
         <Card.Text style={CSS_NFTAssetName}>NFT Name</Card.Text>

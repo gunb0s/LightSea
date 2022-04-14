@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import ProfilePageNavbar from '../ProfilePageNavbar/ProfilePageNavbar';
+import React from "react";
+import styled from "styled-components";
+import ProfilePageNavbar from "../ProfilePageNavbar/ProfilePageNavbar";
 
-const CSS_fontColor="rgb(255,255,255)";
-const CSS_backgroundColor="rgb(20,20,20)";
+const CSS_fontColor = "rgb(255,255,255)";
+const CSS_backgroundColor = "rgb(20,20,20)";
 //color:fontColor;
 //background-color:_backgorundColor;
 
@@ -16,7 +16,7 @@ const BackgroundWrapper = styled.div`
   backgroundwrapper-color: rgb(229, 232, 235);
   overflow: hidden;
   justify-content: center;
-  background-color:rgb(28,28,28) ;
+  background-color: rgb(28, 28, 28);
 `;
 
 const AccountHeader = styled.div`
@@ -62,7 +62,7 @@ const Alias = styled.div`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color:white;
+  color: white;
 `;
 
 const AccountWrapper = styled.div`
@@ -82,7 +82,7 @@ const Account = styled.button`
   border: 0px;
   background: inherit;
   margin-right: 8px;
-  color:rgb(200,200,200) ;
+  color: rgb(200, 200, 200);
 `;
 
 const AddressWrapper = styled.div`
@@ -90,7 +90,7 @@ const AddressWrapper = styled.div`
   padding: 4px 8px;
   /* border: 1px solid rgb(229, 232, 235); */
   border-radius: 16px;
-  background-color:rgb(100,100,100) ;
+  background-color: rgb(100, 100, 100);
 `;
 
 const AddressBtn = styled.button`
@@ -110,7 +110,7 @@ const AddressBtn = styled.button`
 
 const Address = styled.div`
   margin-right: 8px;
-  color:rgb(200,200,200);
+  color: rgb(200, 200, 200);
 `;
 
 const CreatedAt = styled.span`
@@ -123,16 +123,20 @@ const CreatedAt = styled.span`
 // style={{ width: '100%' }}
 const ProfileBanner = () => {
   return (
-    <div  style={{backgroundColor:'rgb(20,20,20)'}}>
+    <div style={{ backgroundColor: "rgb(20,20,20)" }}>
       <BackgroundWrapper>
-        <img src="sampleImage/AccountBackground.jpg" alt="bg" style={{width:'100vw'}}/>
+        <img
+          src="/sampleImage/AccountBackground.jpg"
+          alt="bg"
+          style={{ width: "100vw" }}
+        />
       </BackgroundWrapper>
       <AccountHeader>
         <ImageContainer>
           <img
-            src="sampleImage/profile2.png"
+            src="/sampleImage/profile2.png"
             alt="profile"
-            style={{ width: '100%', height: '100%' }}
+            style={{ width: "100%", height: "100%" }}
           />
         </ImageContainer>
         <Alias>Wartortle</Alias>
@@ -143,7 +147,7 @@ const ProfileBanner = () => {
               <img
                 src="https://openseauserdata.com/files/6f8e2979d428180222796ff4a33ab929.svg"
                 alt="eth"
-                style={{ width: '12px', height: '22px' }}
+                style={{ width: "12px", height: "22px" }}
               />
             </Account>
             <AddressBtn>

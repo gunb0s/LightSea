@@ -16,7 +16,7 @@ const Navigation = () => {
       navigate("/login");
     } else {
       // navigate("/account/:address")
-      navigate("/account");
+      navigate(`/account/${address}`);
     }
   };
 
