@@ -64,7 +64,6 @@ const getNFTMetadata = async (metadataURIs) => {
       .collection("tokenData")
       .find({ metadataUrl: uri })
       .toArray();
-    console.log(data);
     result.push(data[0]);
   }
   return result;

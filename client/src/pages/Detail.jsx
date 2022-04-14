@@ -35,7 +35,7 @@ const Detail = () => {
 
   useEffect(() => {
     getNFTDetail();
-  });
+  }, []);
 
   return (
     <Container>
