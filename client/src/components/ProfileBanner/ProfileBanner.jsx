@@ -121,7 +121,10 @@ const CreatedAt = styled.span`
 `;
 
 // style={{ width: '100%' }}
-const ProfileBanner = () => {
+const ProfileBanner = ({ address }) => {
+  const compressedAddress = (address) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  };
   return (
     <div style={{ backgroundColor: "rgb(20,20,20)" }}>
       <BackgroundWrapper>
@@ -151,7 +154,7 @@ const ProfileBanner = () => {
               />
             </Account>
             <AddressBtn>
-              <Address>0xc542...1c7c</Address>
+              <Address>{compressedAddress(address)}</Address>
             </AddressBtn>
           </AddressWrapper>
         </AccountWrapper>
