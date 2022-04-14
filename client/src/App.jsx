@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Explore from "./pages/Explore";
 import Home from "./pages/Home";
@@ -10,6 +10,12 @@ export const Context = createContext();
 
 const App = () => {
   const [address, setAddress] = useState("");
+
+  useEffect(() => {
+    window.ethereum.on("accountsChanged", function (accounts) {
+      setAddress(window.ethereum.selectedAddress);
+    });
+  });
 
   return (
     <>

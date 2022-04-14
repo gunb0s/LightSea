@@ -154,8 +154,10 @@ const WalletLogin = () => {
               <WalletButton
                 onClick={async () => {
                   const accounts = await window.ethereum.request({
-                    method: "eth_accounts",
+                    method: "eth_requestAccounts",
                   });
+
+                  console.log(accounts);
 
                   setAddress(accounts[0]);
                 }}
