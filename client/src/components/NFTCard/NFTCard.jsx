@@ -67,7 +67,7 @@ const NFTCard = ({ idx }) => {
           Card Link
         </Card.Link>
         <Card.Link style={CSS_cardLinkAnother} href="#">
-          Another Link
+          External Link
         </Card.Link>
       </Card.Body>
     </Card>

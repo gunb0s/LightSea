@@ -12,7 +12,7 @@ const Container = styled.ul`
 
   & > li:nth-child(1) > a:after {
     transition: background-color 0.4s ease 0s;
-    background-color: rgb(32, 129, 226);
+    background-color: gray;
     bottom: 0%;
     content: "";
     display: block;
@@ -33,13 +33,17 @@ const Menu = styled.a`
   border-radius: 10px;
   transition: color 0.4s ease 0s, background-color 0.4s ease 0s;
   /* color: rgb(53, 56, 64); */
-  color:rgb(230,230,230);
+  color: rgb(230, 230, 230);
   /* background-color: rgb(255, 255, 255); */
-  background-color:rgb(20,20,20);
+  background-color: rgb(20, 20, 20);
   text-decoration: none;
 
   font-size: 16px;
   font-weight: 600;
+
+  &:hover {
+    color: gray;
+  }
 `;
 
 const ProfilePageNavbar = () => {

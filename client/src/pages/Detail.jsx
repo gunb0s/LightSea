@@ -9,7 +9,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  bacground-color: white;
+  background-color: rgb(35, 39, 40);
 `;
 
 const Main = styled.div`

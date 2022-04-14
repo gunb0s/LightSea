@@ -31,7 +31,7 @@ const CollectionLink = styled.a`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: rgb(32, 129, 226);
+  color: gray;
   text-decoration: none;
 `;
 
@@ -45,7 +45,7 @@ const CollectionTitle = styled.h1`
   text-overflow: ellipsis;
   line-height: normal;
   display: -webkit-box;
-  -webkit-box-orient: vertical;
+  color: black;
 `;
 
 const NADCHeaders = () => {

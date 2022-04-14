@@ -42,12 +42,12 @@
   font-family: "Englisgh Gilroy-ExtraBold";
 }
 
-.logo:hover > * {
-  background-color: rgb(4, 17, 29);
+.logo:hover > div {
+  background-color: gray;
 }
 
-.logo:hover {
-  color: rgb(4, 17, 29);
+.logo:hover > * {
+  color: gray;
 }
 
 .searchBar {
@@ -89,7 +89,7 @@
 }
 
 .link:hover {
-  color: rgb(4, 17, 29);
+  color: gray;
 }
 
 .accountWrapper {
@@ -108,7 +108,7 @@
 }
 
 .accountLink:hover {
-  color: rgb(4, 17, 29);
+  color: gray;
 }
 
 .walletLink {
@@ -127,5 +127,5 @@
 }
 
 .otherlink:hover {
-  color: rgb(4, 17, 29);
+  color: gray;
 }

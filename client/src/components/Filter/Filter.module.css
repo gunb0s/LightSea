@@ -26,6 +26,7 @@
   top: initial;
   z-index: 3;
   width: 100%;
+  background-color: rgb(35, 39, 40);
 }
 
 .header {
@@ -34,7 +35,7 @@
   top: 0px;
   display: flex;
   border-bottom: 1px solid rgb(229, 232, 235);
-  background-color: rgb(255, 255, 255);
+  background-color: var(--sub-bg-color);
   -webkit-box-align: center;
   align-items: center;
 
@@ -49,7 +50,7 @@
 }
 
 .header:hover {
-  box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+  box-shadow: rgba(153, 165, 175, 0.25) 0px 0px 8px 0px;
 }
 
 .header_button {
@@ -126,7 +127,7 @@
   font-weight: 600;
   padding: 20px;
   user-select: none;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--sub-bg-color);
   margin: 0px;
 }
 
@@ -138,7 +139,7 @@
 .status_body {
   border-top: 1px solid rgb(229, 232, 235);
   color: rgb(53, 56, 64);
-  background-color: rgb(251, 253, 255);
+  background-color: var(--sub-bg-color);
 }
 
 .status_body_wrapper {
@@ -156,10 +157,10 @@
 .status_main_btn {
   -webkit-box-align: center;
   align-items: center;
-  border: 1px solid rgb(229, 232, 235);
+  border: 1px solid var(--sub-bg-color-1);
   border-radius: 10px;
   color: rgb(53, 56, 64);
-  background-color: rgb(255, 255, 255);
+  background-color: var(--sub-bg-color);
   display: flex;
   height: 40px;
   margin: 4px;
@@ -278,6 +279,10 @@
   outline: none;
   padding: 0px 12px 0px 0px;
   min-width: 0px;
+}
+
+.range_input::placeholder {
+  color: white;
 }
 
 .to {
