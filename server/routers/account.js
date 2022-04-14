@@ -1,17 +1,16 @@
 import express from "express";
-// import {
-//   getNFTMetadataURI as getNFTMetadataURIFromDB,
-//   getNFTMetadata as getNFTMetadataFROMDB,
-// } from "../db/db.js";
+import { getAccount as getAccountFromDB } from "../db/db.js";
 
 const router = express.Router();
 
 const getAccount = async (req, res) => {
-  res.send("account");
+  const { address } = req.params;
+  const result = await getAccountFromDB(address);
+  res.send(result);
 };
 
 router.get("/:address", getAccount);
 
 export default router;
 
-//0x8432aa95BA718686FD38d8599fC68A281B9a933F
+//0xCb257F81a50AB3cd480E0097a671329012A1999b

@@ -1,6 +1,6 @@
 import express from "express";
 import createRouter from "./create.js";
-import nftRouter from "./nft.js";
+import nftRouter from "./nfts.js";
 import assetRouter from "./asset.js";
 import accountRouter from "./account.js";
 import txRouter from "./tx.js";

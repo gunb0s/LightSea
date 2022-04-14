@@ -1,9 +1,12 @@
 import express from "express";
+import { getAsset as getAssetFromDB } from "../db/db.js";
 
 const router = express.Router();
 
 const getAsset = async (req, res) => {
-  res.send("asset");
+  const { account, id } = req.params;
+  const result = await getAssetFromDB(account, parseInt(id));
+  res.send(result);
 };
 
 router.get("/:account/:id", getAsset);
