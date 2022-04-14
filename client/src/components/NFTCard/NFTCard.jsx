@@ -3,6 +3,7 @@ import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import styles from "./NFTCard.module.css";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { Hidden } from "@material-ui/core";
 
 const EthPrice = styled.div`
   display: flex;
@@ -12,7 +13,8 @@ const EthPrice = styled.div`
   max-width: 13ch;
 `;
 
-const NFTCard = ({ idx }) => {
+const NFTCard = ({ nft }) => {
+  const { contractAddress, metadata, metadataUrl, owner, tokenID } = nft;
   const navigate = useNavigate();
   const onCardLinkClik = () => {
     navigate("/assets/0x1/1");
@@ -29,21 +31,34 @@ const NFTCard = ({ idx }) => {
     textDecoration: "none",
     color: "rgb(200,200,200)",
   };
-  const CSS_CollectionName = { marginBottom: "2px", fontSize: "14px" };
+  const CSS_CollectionName = {
+    marginBottom: "2px",
+    fontSize: "14px",
+    wordBreak: "break-all",
+  };
   const CSS_NFTAssetName = {
     paddingTop: "0",
     paddingBottom: "0",
     marginTop: "2px",
     fontSize: "23px",
     fontWeight: "700",
+    wordBreak: "break-all",
+    whiteSpace: "normal",
+  };
+
+  const cardImage = {
+    width: "100%",
+    height: "300px",
   };
 
   return (
     <Card className={styles.card}>
-      <Card.Img variant="top" src={`/sampleImage/N${101 + idx}.png`} />
+      <Card.Img style={cardImage} variant="top" src={metadata.image} />
       <Card.Body>
-        <Card.Title style={CSS_CollectionName}>Collection Name</Card.Title>
-        <Card.Text style={CSS_NFTAssetName}>NFT Name</Card.Text>
+        <Card.Title style={CSS_CollectionName}>{metadata.name}</Card.Title>
+        <Card.Text
+          style={CSS_NFTAssetName}
+        >{`${metadata.name}-${tokenID}`}</Card.Text>
       </Card.Body>
       <ListGroup className={`list-group-flush ${styles.list}`}>
         <ListGroupItem>Top Bid</ListGroupItem>

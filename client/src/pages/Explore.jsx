@@ -10,9 +10,9 @@ const Explore = () => {
 
   const getNFTs = async () => {
     try {
-      const { data } = await axios.get("/api/v1/nfts");
+      const { data } = await axios.get("http://localhost:8000/api/v1/nfts");
       setNfts((prev) => {
-        return [...prev, ...data];
+        return [...data];
       });
     } catch (err) {
       console.log(err);
@@ -20,7 +20,7 @@ const Explore = () => {
   };
 
   useEffect(() => {
-    // getNFTs()
+    getNFTs();
   }, []);
 
   return (
@@ -28,7 +28,7 @@ const Explore = () => {
       <Navigation />
       <div style={{ display: "flex" }}>
         <Filter />
-        <NFTCardList />
+        <NFTCardList nfts={nfts} />
       </div>
       <Footer />
     </div>
