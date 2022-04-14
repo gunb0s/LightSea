@@ -15,13 +15,28 @@ const EthPrice = styled.div`
 const NFTCard = ({ idx }) => {
   const navigate = useNavigate();
   const onCardLinkClik = () => {
-    navigate("/assets/0x1");
+    navigate("/assets/0x1/1");
   };
 
-  const CSS_cardLinkAnother={ marginLeft:'90px', fontWeight:'500', textDecoration:'none', color:"rgb(200,200,200)"};
-  const CSS_cardLink={fontWeight:'500', textDecoration:'none', color:"rgb(200,200,200)"};
-  const CSS_CollectionName={marginBottom:"2px",fontSize:'14px'}
-  const CSS_NFTAssetName={paddingTop:"0",paddingBottom:"0",marginTop:"2px",fontSize:'23px',fontWeight:'700'}  
+  const CSS_cardLinkAnother = {
+    marginLeft: "90px",
+    fontWeight: "500",
+    textDecoration: "none",
+    color: "rgb(200,200,200)",
+  };
+  const CSS_cardLink = {
+    fontWeight: "500",
+    textDecoration: "none",
+    color: "rgb(200,200,200)",
+  };
+  const CSS_CollectionName = { marginBottom: "2px", fontSize: "14px" };
+  const CSS_NFTAssetName = {
+    paddingTop: "0",
+    paddingBottom: "0",
+    marginTop: "2px",
+    fontSize: "23px",
+    fontWeight: "700",
+  };
 
   return (
     <Card className={styles.card}>
@@ -48,8 +63,12 @@ const NFTCard = ({ idx }) => {
         <ListGroupItem>7 days left</ListGroupItem>
       </ListGroup>
       <Card.Body>
-        <Card.Link style={CSS_cardLink} onClick={onCardLinkClik}>Card Link</Card.Link>
-        <Card.Link style={CSS_cardLinkAnother} href="#">Another Link</Card.Link>
+        <Card.Link style={CSS_cardLink} onClick={onCardLinkClik}>
+          Card Link
+        </Card.Link>
+        <Card.Link style={CSS_cardLinkAnother} href="#">
+          Another Link
+        </Card.Link>
       </Card.Body>
     </Card>
   );

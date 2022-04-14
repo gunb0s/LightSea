@@ -33,7 +33,6 @@ const Title = styled.span`
   font-weight: 300;
   font-family: "Englisgh Gilroy-Light";
   user-select: none;
-
 `;
 
 const DescWrapper = styled.div`
@@ -65,7 +64,7 @@ const DescTitle = styled.div`
 `;
 
 const Desc = styled.pre`
-  color: rgb(100,100,100);
+  color: rgb(100, 100, 100);
   font-size: 2rem;
   font-family: "Korean Cafe24SsurroundAir";
   font-weight: 100;
@@ -141,7 +140,7 @@ const Traveler = styled.div`
   align-items: center;
   font-family: "Korean Cafe24SsurroundAir";
   font-weight: light;
-  color: rgb(150,150,150);
+  color: rgb(150, 150, 150);
   font-size: 2rem;
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -151,9 +150,7 @@ const MainLeft = () => {
   return (
     <ContainerWrapper>
       <Container>
-        <TitleWrapper>
-          {/* <Title>LIGHTSEA</Title> */}
-        </TitleWrapper>
+        <TitleWrapper>{/* <Title>LIGHTSEA</Title> */}</TitleWrapper>
         <DescWrapper>
           <DescTitle>Space Travel NFT Marketplace For Space Traveler</DescTitle>
           <Desc>
@@ -174,7 +171,7 @@ const MainLeft = () => {
           <GalleryWrapper>
             <Gallery>
               {new Array(8).fill(0).map((_, idx) => {
-                return <NFT idx={idx + 1} />;
+                return <NFT key={idx} idx={idx + 1} />;
               })}
             </Gallery>
           </GalleryWrapper>

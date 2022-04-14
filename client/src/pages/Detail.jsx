@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Navigation from "../components/Navigation/Navigation";
 import NFTAssetDetailCard from "../components/NFTAssetDetailCard/NFTAssetDetailCard";
 import styled from "styled-components";
@@ -17,7 +18,8 @@ const Main = styled.div`
   flex: 1 1 0%;
 `;
 
-const Detail = ({ contract, tokenID }) => {
+const Detail = () => {
+  const { contract, tokenID } = useParams();
   const [nftData, setNftData] = useState({});
 
   const getNFTDetail = async () => {

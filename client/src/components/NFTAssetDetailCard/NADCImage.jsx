@@ -46,7 +46,7 @@ const NADCImage = () => {
               poster="https://lh3.googleusercontent.com/vbEAsCFPx1IiwjirVUDS8TQGOOKWjRX7SKno5WReBc6nQZ3haTKq4zcSfLOqPxw8jkSMM0ZllpBsLoUF3AAYKn_1fH_V4m58OMnW"
               preload="metadata"
               autoPlay
-              controls="true"
+              controls={true}
               controlsList="nodownload"
               playsInline
               loop

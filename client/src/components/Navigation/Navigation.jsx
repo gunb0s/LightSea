@@ -9,18 +9,23 @@ import { Context } from "../../App";
 
 const Navigation = () => {
   const navigate = useNavigate();
-  const login = useContext(Context).login;
+  const address = useContext(Context).address;
 
   const onAccountClick = () => {
-    if (!login) {
+    if (address === "") {
       navigate("/login");
     } else {
+      // navigate("/account/:address")
       navigate("/account");
     }
   };
 
   const onWalletClick = () => {
-    navigate("/login");
+    if (address === "") {
+      navigate("/login");
+    } else {
+      alert(`address: ${address}`);
+    }
   };
 
   return (
@@ -29,7 +34,16 @@ const Navigation = () => {
         <div className={styles.navbarLeft}>
           <Link className={styles.logo} to="/">
             <Logo />
-            <span style={{marginLeft:'10px',fontFamily: "Englisgh Gilroy-Light",letterSpacing:'1rem',textDecoration:"none"}}>LIGHTSEA</span>
+            <span
+              style={{
+                marginLeft: "10px",
+                fontFamily: "Englisgh Gilroy-Light",
+                letterSpacing: "1rem",
+                textDecoration: "none",
+              }}
+            >
+              LIGHTSEA
+            </span>
           </Link>
         </div>
         <div className={styles.searchBar}>

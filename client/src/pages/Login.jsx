@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import Navigation from "../components/Navigation/Navigation";
 import Footer from "../components/Footer/Footer";
 import styled from "styled-components";
 import WalletLogin from "../components/WalletLogin/WalletLogin";
+import { Context } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.main`
   display: flex;
@@ -17,6 +19,15 @@ const Main = styled.div`
 `;
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { address } = useContext(Context);
+
+  useEffect(() => {
+    if (address !== "") {
+      navigate("/");
+    }
+  });
+
   return (
     <div
       style={{
