@@ -3,7 +3,6 @@ import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import styles from "./NFTCard.module.css";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { Hidden } from "@material-ui/core";
 
 const EthPrice = styled.div`
   display: flex;
@@ -17,7 +16,7 @@ const NFTCard = ({ nft }) => {
   const { contractAddress, metadata, metadataUrl, owner, tokenID } = nft;
   const navigate = useNavigate();
   const onCardLinkClik = () => {
-    navigate("/assets/0x1/1");
+    navigate(`/assets/${contractAddress}/${tokenID}`);
   };
 
   const CSS_cardLinkAnother = {
@@ -58,7 +57,7 @@ const NFTCard = ({ nft }) => {
         <Card.Title style={CSS_CollectionName}>{metadata.name}</Card.Title>
         <Card.Text
           style={CSS_NFTAssetName}
-        >{`${metadata.name}-${tokenID}`}</Card.Text>
+        >{`${metadata.name} ${tokenID}`}</Card.Text>
       </Card.Body>
       <ListGroup className={`list-group-flush ${styles.list}`}>
         <ListGroupItem>Top Bid</ListGroupItem>

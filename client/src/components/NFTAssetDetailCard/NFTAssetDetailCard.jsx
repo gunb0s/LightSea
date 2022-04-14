@@ -38,17 +38,20 @@ const ItemMain = styled.div`
   margin-left: -20px;
 `;
 
-const NFTAssetDetailCard = () => {
+const NFTAssetDetailCard = ({ nft }) => {
+  const { contractAddress, metadata, metadataUrl, owner, tokenID } = nft;
+
+  if (metadata === undefined) return <div></div>;
   return (
     <Container>
       <ItemContainer>
         <ItemWrapper>
           <ItemSummary>
-            <NADCImage />
+            <NADCImage image={metadata.image} />
             <NADCSummary />
           </ItemSummary>
           <ItemMain>
-            <NADCHeaders />
+            <NADCHeaders name={metadata.name} tokenID={tokenID} />
             <Frame>
               <NADCTrade />
             </Frame>

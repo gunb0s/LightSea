@@ -36,34 +36,17 @@ const Image = styled.div`
   position: relative;
 `;
 
-const NADCImage = () => {
+const NADCImage = ({ image }) => {
   return (
     <Frame>
       <ImageWrapper>
         <ImageMain>
           <Image>
-            <video
-              poster="https://lh3.googleusercontent.com/vbEAsCFPx1IiwjirVUDS8TQGOOKWjRX7SKno5WReBc6nQZ3haTKq4zcSfLOqPxw8jkSMM0ZllpBsLoUF3AAYKn_1fH_V4m58OMnW"
-              preload="metadata"
-              autoPlay
-              controls={true}
-              controlsList="nodownload"
-              playsInline
-              loop
-              style={{
-                width: "520px",
-                height: "520px",
-                maxWidth: "100%",
-                maxHeight: "100%",
-                borderRadius: "initial",
-                opacity: 1,
-              }}
-            >
-              <source
-                src="https://openseauserdata.com/files/3565db33a856b19f48396062e59e6d62.mp4#t=0.001"
-                type="video/mp4"
-              />
-            </video>
+            <img
+              src={image}
+              alt="nft"
+              style={{ width: "600px", height: "600px" }}
+            />
           </Image>
         </ImageMain>
       </ImageWrapper>

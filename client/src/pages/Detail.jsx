@@ -19,12 +19,14 @@ const Main = styled.div`
 `;
 
 const Detail = () => {
-  const { contract, tokenID } = useParams();
+  const { contract, tokenId } = useParams();
   const [nftData, setNftData] = useState({});
 
   const getNFTDetail = async () => {
     try {
-      const { data } = await axios.get(`/api/v1/${contract}/${tokenID}`);
+      const { data } = await axios.get(
+        `http://localhost:8000/api/v1/asset/${contract}/${tokenId}`
+      );
       setNftData((prev) => data);
     } catch (err) {
       console.log(err);
@@ -32,14 +34,14 @@ const Detail = () => {
   };
 
   useEffect(() => {
-    // getNFTDetail()
-  }, []);
+    getNFTDetail();
+  });
 
   return (
     <Container>
       <Navigation />
       <Main>
-        <NFTAssetDetailCard />
+        <NFTAssetDetailCard nft={nftData} />
       </Main>
     </Container>
   );

@@ -48,15 +48,15 @@ const CollectionTitle = styled.h1`
   color: black;
 `;
 
-const NADCHeaders = () => {
+const NADCHeaders = ({ name, tokenID }) => {
   return (
     <Header>
       <CollectionInfo>
         <CollectionDetail>
-          <CollectionLink>Pocketmon</CollectionLink>
+          <CollectionLink>{name}</CollectionLink>
         </CollectionDetail>
       </CollectionInfo>
-      <CollectionTitle>Pocketmon 1</CollectionTitle>
+      <CollectionTitle>{`${name} ${tokenID}`}</CollectionTitle>
     </Header>
   );
 };
