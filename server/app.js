@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { default as mongodb } from 'mongodb';
 import dotenv from 'dotenv';
+// import projectContractList from '../Resource/jsondata/contract.json'
 
 dotenv.config();
 
@@ -20,44 +21,45 @@ MongoClient.connect(
     if (err) {
       console.log(err);
     } else {
-      db = client.db('STORAGE');
+      db = client.db('NFTSTORAGE');
       app.listen(process.env.PORT || 8000, () => {
-        console.log('Conneted DB!! Running Port');
+        console.log('Connected DB!! Running Port');
       });
     }
   }
 );
 
 const data = {
+  id: '',
   name: '',
   external: '',
   description: '',
-  chain: '',
-  type: '',
   image: '',
+  sale: '',
+  price: ''
 };
 
 function inputData(
+  tokenId,
   name,
   external,
   description,
-  chain,
-  type,
   image,
   sale,
   price
 ) {
+  data.id = tokenId;
   data.name = name;
   data.external = external;
   data.description = description;
-  data.chain = chain;
-  data.type = type;
   data.image = image;
   data.sale = sale;
   data.price = price;
 }
 
+// create할때,,
 app.post('/create', (req, res) => {
+  // 프론트에서 받은 데이터
   const account = req.body.account;
   const tokenId = req.body.tokenId;
 
@@ -65,39 +67,46 @@ app.post('/create', (req, res) => {
     req.body.name,
     req.body.external,
     req.body.description,
-    req.body.chain,
-    req.body.type,
     req.body.image,
     req.body.sale,
     req.body.price
   );
 
+// contract 객체 구하기
+
+// db에 저장되어있으면 update 새로운 사람이면 insertOne
   if (account !== undefined) {
-    db.collection('NFTPOST')
+    db.collection('contract')
       .find({ account: account })
       .toArray((err, result) => {
         if (result[0] !== undefined) {
-          db.collection('NFTPOST').update(
-            { account: account },
-            { $push: { tokenIds: { tokenId: tokenId, type: input.type } } }
-          );
-          db.collection('Types').insertOne({
-            type: input.type,
-            data: { account: account, tokenId: tokenId, metadata: input },
+          db.collection('contract').update(
+            { account: account }, // db에 이미 저장돼있으면 추가해주는
+            { $push: { metadataURI: "컨트랙트 주소를 넣어줄게용"} } //컨트랙트주소만 넣으면 될둡? 
+          ); 
+          db.collection('tokenData').insertOne({
+            tokenId: tokenId,
+            metadataURI: [],
+            metadata: { name: data.name, description: data.description, image: data.image, sale: data.sale, price: data.price },
+            contractAddress: '컨트랙트 주소', // 값 넣어주기,,
+            owner: account
           });
         } else {
-          db.collection('NFTPOST').insertOne(
+          db.collection('contract').insertOne( // 새로 저장
             {
               account: account,
-              tokenIds: [{ tokenId: tokenId, type: input.type }],
+              metadataURI: [{ tokenId: tokenId, type: data.type }],
             },
             (err, result) => {
-              console.log(result);
+              console.log("===>>>" + result);
             }
           );
-          db.collection('Types').insertOne({
-            type: input.type,
-            data: { account: account, tokenId: tokenId, metadata: input },
+          db.collection('tokenData').insertOne({
+            tokenId: tokenId,
+            metadataURI: [],
+            metadata: { name: data.name, description: data.description, image: data.image, sale: data.sale, price: data.price },
+            contractAddress: '컨트랙트 주소',
+            owner: account
           });
         }
       });
@@ -105,24 +114,51 @@ app.post('/create', (req, res) => {
   res.send('success');
 });
 
-app.get('/erc721/:tokenId', (req, res) => {
-  let tokenId = req.params.tokenId;
-  console.log(tokenId);
-
-  db.collection('Types')
-    .find({ 'data.tokenId': tokenId })
-    .toArray((error, result) => {
-      console.log(result);
-      if (error) console.log(error);
+// explore
+app.get('/explore', (req, res) => {
+  db.collection('tokenData')
+    .find() // find({}) 일 필요가 있남..?
+    .toArray((err, result) => {
+      if (err) console.log('OMG!!!! ===>>>', err);
       if (result) {
-        res.send(result[0].data.metadata);
+        console.log(result.metadata)
+      }
+    })
+})
+
+// 해당 유저 주소에 해당 토큰 아이디! > 유저의 nft 데이터
+app.get('/:account', (req, res) => {
+  let account = req.params.account;
+
+  db.collection('contract')
+    .find({ 'account': account })
+    .toArray((err, result) => {
+      if (err) console.log('OMG!!!! ===>>>', err);
+      if (result) {
+        console.log(result);
+        res.send(result.metadataURI);
       }
     });
-  res.send('loading fail');
 });
 
+// 해당 컨트랙트에 토큰아이디 > nft 상세페이지
+app.get("/asset/:contraact/:tokenId", (req, res)=>{
+  let tokenId = req.params.tokenId;
+
+  db.collection('tokenData')
+    .find({ 'tokenId': tokenId })
+    .toArray((err, result) => {
+      if (err) console.log('OMG!!!! ===>>>', err);
+      if (result) {
+        console.log(result)
+        res.send(result.metadata)
+      }
+    })
+})
+
+// 특정 값 삭제, 특정 계정에 값 옮기기
 function deleteSeller(seller, tokenId) {
-  db.collection('NFTPOST').update(
+  db.collection('contract').update(
     {
       account: seller,
     },
@@ -135,7 +171,7 @@ function deleteSeller(seller, tokenId) {
 }
 
 function changeOwner(seller, buyer) {
-  db.collection('Types').update(
+  db.collection('tokenData').update(
     {
       'data.account': seller,
     },
@@ -154,20 +190,20 @@ app.post('/buy', (req, res) => {
   const type = req.body.type;
 
   if (buyer !== undefined) {
-    db.collection('NFTPOST')
+    db.collection('contract')
       .find({ account: buyer })
       .toArray((error, result) => {
         if (result[0] !== undefined) {
           deleteSeller(seller, tokenId);
           changeOwner(seller, buyer);
-          db.collection('NFTPOST').update(
+          db.collection('contract').update(
             { account: buyer },
             { $push: { tokenIds: { tokenId: Number(tokenId), type: type } } }
           );
         } else {
           deleteSeller(seller, tokenId);
           changeOwner(seller, buyer);
-          db.collection('NFTPOST').insertOne(
+          db.collection('contract').insertOne(
             {
               account: buyer,
               tokenIds: [{ tokenId: Number(tokenId), type: type }],
@@ -183,15 +219,6 @@ app.post('/buy', (req, res) => {
   res.send('success');
 });
 
-app.get('/Main', (req, res) => {
-  db.collection('Types')
-    .find({})
-    .toArray((err, result) => {
-      console.log(result[0].data.tokenId);
-      res.send(result);
-    });
-});
-
 app.post('/mypage', (req, res) => {
   const account = req.body.account;
 
@@ -201,7 +228,7 @@ app.post('/mypage', (req, res) => {
   console.log(change);
 
   const mypageData = [];
-  db.collection('NFTPOST')
+  db.collection('contract')
     .find({ account: change })
     .toArray((err, result) => {
       if (result[0] !== undefined) {
@@ -212,7 +239,7 @@ app.post('/mypage', (req, res) => {
         const sendData = [];
 
         for (let i = 0; i < mypageData.length; i++) {
-          db.collection('Types')
+          db.collection('tokenData')
             .find({ 'data.tokenId': mypageData[i] })
             .toArray((err, result) => {
               sendData.push(...result);
