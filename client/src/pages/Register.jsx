@@ -1,9 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Footer from "../components/Footer/Footer";
 import Navigation from "../components/Navigation/Navigation";
 import styled from "styled-components";
 import { Context } from "../App";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.main`
   display: flex;
@@ -47,6 +48,7 @@ const Button = styled.button.attrs((props) => ({
 `;
 
 const Register = () => {
+  const navigate = useNavigate();
   const address = useContext(Context).address;
   const [contractAddress, setContractAddress] = useState("");
   const [abi, setAbi] = useState("");
@@ -64,8 +66,17 @@ const Register = () => {
       contractAddress,
       abi,
     });
-    console.log(result);
+
+    setContractAddress((prev) => "");
+    setAbi((prev) => "");
+    alert(result.data);
   };
+
+  useEffect(() => {
+    if (address === "") {
+      navigate("/");
+    }
+  });
 
   return (
     <div

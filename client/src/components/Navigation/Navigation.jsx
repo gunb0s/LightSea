@@ -5,6 +5,7 @@ import { AccountBalanceWallet } from "@material-ui/icons";
 import SearchBar from "../SearchBar/SearchBar";
 import Logo from "../Logo/Logo";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { Context } from "../../App";
 
 const Navigation = () => {
@@ -20,11 +21,14 @@ const Navigation = () => {
     }
   };
 
-  const onWalletClick = () => {
+  const onWalletClick = async () => {
     if (address === "") {
       navigate("/login");
     } else {
-      alert(`address: ${address}`);
+      const { data } = await axios.get(
+        `http://localhost:8000/api/v1/balance/${address}`
+      );
+      alert(`your balance: ${data}`);
     }
   };
 
