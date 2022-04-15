@@ -3,7 +3,7 @@ import styles from "./Navigation.module.css";
 import { AccountCircle } from "@material-ui/icons";
 import { AccountBalanceWallet } from "@material-ui/icons";
 import SearchBar from "../SearchBar/SearchBar";
-import Logo from "../Logo/Logo";
+// import Logo from "../Logo/Logo";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Context } from "../../App";
@@ -37,7 +37,7 @@ const Navigation = () => {
       <nav className={styles.navbar}>
         <div className={styles.navbarLeft}>
           <Link className={styles.logo} to="/">
-            <Logo />
+            {/* <Logo />
             <span
               style={{
                 marginLeft: "10px",
@@ -47,7 +47,12 @@ const Navigation = () => {
               }}
             >
               LIGHTSEA
-            </span>
+            </span> */}
+            <img
+              src="/sampleImage/Resource/LOGO_LIGHTSEA.png"
+              alt="logo"
+              style={{ width: "100%" }}
+            />
           </Link>
         </div>
         <div className={styles.searchBar}>
