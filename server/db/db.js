@@ -9,26 +9,6 @@ const URL =
 let db;
 let mongoClient;
 
-const data = {
-  id: "",
-  name: "",
-  external: "",
-  description: "",
-  image: "",
-  sale: "",
-  price: "",
-};
-
-function inputData(tokenId, name, external, description, image, sale, price) {
-  data.id = tokenId;
-  data.name = name;
-  data.external = external;
-  data.description = description;
-  data.image = image;
-  data.sale = sale;
-  data.price = price;
-}
-
 const dbConnect = async () => {
   try {
     mongoClient = new MongoClient(URL);
@@ -97,7 +77,7 @@ const getAsset = async (account, id) => {
   try {
     result = await db
       .collection("tokenData")
-      .find({ contractAddress: account, tokenID: id })
+      .find({ contractAddress: account, tokenID: parseInt(id) })
       .toArray();
   } catch (err) {
     console.log("OMG!!!! ===>>>", err);
@@ -165,9 +145,11 @@ const setMint = async (contract, to, tokenID, metadataUrl, data) => {
   const DBdata = {
     contractAddress: contract.toLowerCase(),
     owner: to.toLowerCase(),
-    tokenID,
+    tokenID: parseInt(tokenID),
     metadataUrl,
     metadata: data,
+    onSale: false,
+    salesHistory: [],
   };
   await db.collection("tokenData").insertOne(DBdata);
 };
@@ -187,6 +169,84 @@ const updateTokenData = async (contract, from, to, tokenID) => {
   );
 };
 
+const registerSaleStatus = async (price, ca, tokenID) => {
+  await db.collection("tokenData").updateOne(
+    {
+      contractAddress: ca.toLowerCase(),
+      tokenID: parseInt(tokenID),
+    },
+    { $set: { onSale: true } }
+  );
+
+  await db.collection("saleStatus").insertOne({
+    contractAddress: ca.toLowerCase(),
+    tokenID: parseInt(tokenID),
+    price,
+  });
+};
+
+const closeSale = async (price, ca, tokenID) => {
+  await db.collection("tokenData").updateOne(
+    {
+      contractAddress: ca.toLowerCase(),
+      tokenID: parseInt(tokenID),
+    },
+    { $set: { onSale: false } }
+  );
+
+  await db.collection("saleStatus").deleteOne({
+    contractAddress: ca.toLowerCase(),
+    tokenID: parseInt(tokenID),
+  });
+};
+
+const buy = async (price, ca, tokenID, owner, buyer) => {
+  await db.collection("tokenData").updateOne(
+    {
+      contractAddress: ca.toLowerCase(),
+      tokenID: parseInt(tokenID),
+    },
+    {
+      $set: {
+        onSale: false,
+      },
+    }
+  );
+
+  await db.collection("tokenData").updateOne(
+    {
+      contractAddress: ca.toLowerCase(),
+      tokenID: parseInt(tokenID),
+    },
+    {
+      $push: {
+        salesHistory: {
+          price,
+          date: Date.now(),
+          from: owner.toLowerCase(),
+          to: buyer.toLowerCase(),
+        },
+      },
+    }
+  );
+
+  await db.collection("saleStatus").deleteOne({
+    contractAddress: ca.toLowerCase(),
+    tokenID: parseInt(tokenID),
+  });
+};
+
+const getPrice = async (ca, tokenID) => {
+  const result = await db
+    .collection("saleStatus")
+    .find({
+      contractAddress: ca.toLowerCase(),
+      tokenID: parseInt(tokenID),
+    })
+    .toArray();
+  return result[0];
+};
+
 export {
   dbConnect,
   getNFTMetadataURI,
@@ -199,4 +259,8 @@ export {
   getSpecificContract,
   setMint,
   updateTokenData,
+  registerSaleStatus,
+  getPrice,
+  closeSale,
+  buy,
 };

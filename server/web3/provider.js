@@ -31,6 +31,18 @@ const web3Init = async () => {
   console.log(contracts.length);
 };
 
+const trasfer = async (ca, abi, owner, buyer, tokenID) => {
+  const wallet = new ethers.Wallet(
+    "dc79fff6e9bed0cd11c8e2ddc4dac8eb73bca36cbcc6a5b1aade153ebdc72382",
+    provider
+  );
+
+  const signer = wallet.connect(provider);
+  const contract = new ethers.Contract(ca, abi, signer);
+
+  await contract.transferFrom(owner, buyer, tokenID);
+};
+
 const handleTransferEvent = async (from, to, tokenID, event) => {
   let tokenIDtoInt = tokenID.toNumber();
 
@@ -79,6 +91,8 @@ const getContractData = async (address, abi) => {
           owner: owner.toLowerCase(),
           contractAddress: address,
           metadata: data,
+          onSale: false,
+          salesHistory: [],
         };
 
         result.metadataUrls.push(metadataUrl);
@@ -96,4 +110,4 @@ const getContractData = async (address, abi) => {
   return result;
 };
 
-export { web3Init, getBalance, getContractData };
+export { web3Init, getBalance, getContractData, trasfer };

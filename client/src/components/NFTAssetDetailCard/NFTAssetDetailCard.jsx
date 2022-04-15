@@ -39,7 +39,8 @@ const ItemMain = styled.div`
 `;
 
 const NFTAssetDetailCard = ({ nft }) => {
-  const { contractAddress, metadata, metadataUrl, owner, tokenID } = nft;
+  const { contractAddress, metadata, owner, tokenID, onSale, salesHistory } =
+    nft;
 
   if (metadata === undefined) return <div></div>;
   return (
@@ -53,7 +54,13 @@ const NFTAssetDetailCard = ({ nft }) => {
           <ItemMain>
             <NADCHeaders name={metadata.name} tokenID={tokenID} />
             <Frame>
-              <NADCTrade />
+              <NADCTrade
+                owner={owner}
+                ca={contractAddress}
+                tokenID={tokenID}
+                onSale={onSale}
+                salesHistory={salesHistory}
+              />
             </Frame>
             <Frame>
               <NADCPriceHistory />

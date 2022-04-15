@@ -63,7 +63,7 @@ const NFTCard = ({ nft }) => {
   return (
     <Card className={styles.card}>
       <Card.Img style={cardImage} variant="top" src={metadata.image} />
-      <Card.Body style={cardBody}>
+      <Card.Body>
         <Card.Title style={CSS_CollectionName}>
           LightSeaNFT [{tokenID}]
         </Card.Title>

@@ -1,10 +1,9 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import {
-  AccountBalanceWallet,
-  CreditCard,
-  LocalOffer,
-} from "@material-ui/icons";
+import { Context } from "../../App";
+import NADCTradeButtonNotOwner from "./NADCTradeButtonNotOwner";
+import NADCTradeButtonOwner from "./NADCTradeButtonOwner";
 
 const Container = styled.section`
   border-radius: 10px;
@@ -51,66 +50,80 @@ const Price = styled.div`
   text-overflow: ellipsis;
 `;
 
-const PriceFiat = styled.div`
-  font-size: 15px;
-  margin-top: 15px;
-  margin-left: 8px;
-  color: rgb(112, 122, 131);
-  width: fit-content;
-  max-width: 100%;
-`;
-
 const ButtonContainer = styled.div`
   display: block;
   max-width: 420px;
 `;
 
-const Top = styled.div`
-  display: inline-flex;
-  width: 100%;
-`;
+const NADCTrade = ({ owner, ca, tokenID, onSale, salesHistory }) => {
+  const { address } = useContext(Context);
+  const [price, setPrice] = useState(0);
 
-const ButtonTop = styled.div`
-  display: inline-flex;
-  flex-direction: row;
-  -webkit-box-align: center;
-  align-items: center;
-  border-radius: 10px;
-  -webkit-box-pack: center;
-  justify-content: center;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 12px 20px;
-  background-color: rgb(32, 129, 226);
-  border: 1px solid rgb(32, 129, 226);
-  color: rgb(255, 255, 255);
-  width: 100%;
-  cursor: pointer;
-`;
+  useEffect(() => {
+    const getPrice = async () => {
+      const response = await axios.get(
+        `http://localhost:8000/api/v1/sale/${ca}/${tokenID}`
+      );
 
-const LogoWrapper = styled.div`
-  display: flex;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-right: 12px;
-`;
+      const { price: priceFromDB } = response.data;
+      setPrice((prev) => priceFromDB);
+    };
 
-const Bottom = styled.div`
-  display: flex;
-  margin-top: 8px;
+    if (onSale) {
+      getPrice();
+    } else {
+      return;
+    }
 
-  & > * {
-    width: 50%;
-  }
-`;
+    console.log("set");
+  }, [price]);
 
-const ButtonBottom = styled(ButtonTop)`
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(32, 129, 226);
-  color: rgb(32, 129, 226);
-`;
+  const renderButton = () => {
+    if (address.toLowerCase() === owner) {
+      if (onSale) {
+        return (
+          <NADCTradeButtonOwner
+            onSale={onSale}
+            ca={ca}
+            owner={owner}
+            tokenID={tokenID}
+          />
+        );
+      } else {
+        return (
+          <NADCTradeButtonOwner
+            onSale={onSale}
+            ca={ca}
+            owner={owner}
+            tokenID={tokenID}
+          />
+        );
+      }
+    } else {
+      if (onSale) {
+        return (
+          <NADCTradeButtonNotOwner
+            onSale={onSale}
+            ca={ca}
+            owner={owner}
+            tokenID={tokenID}
+            price={price}
+          />
+        );
+      } else {
+        return (
+          <NADCTradeButtonNotOwner
+            onSale={onSale}
+            ca={ca}
+            owner={owner}
+            tokenID={tokenID}
+            price={price}
+          />
+        );
+      }
+    }
+  };
 
-const NADCTrade = () => {
   return (
     <div>
       <Container>
@@ -132,40 +145,12 @@ const NADCTrade = () => {
                   </Eth>
                 </a>
               </div>
-              <Price>10</Price>
+              <Price>{onSale ? price : "Not on sale"}</Price>
             </PriceMain>
-            <PriceFiat>
-              <div>($32250)</div>
-            </PriceFiat>
           </PriceContainer>
           <ButtonContainer>
             <div style={{ width: "100%", display: "contents" }}>
-              <Top>
-                <ButtonTop>
-                  <LogoWrapper>
-                    <AccountBalanceWallet />
-                  </LogoWrapper>
-                  Buy now
-                </ButtonTop>
-              </Top>
-              <Bottom>
-                <div>
-                  <ButtonBottom>
-                    <LogoWrapper>
-                      <CreditCard />
-                    </LogoWrapper>
-                    Buy with card
-                  </ButtonBottom>
-                </div>
-                <div style={{ marginLeft: "8px" }}>
-                  <ButtonBottom>
-                    <LogoWrapper>
-                      <LocalOffer />
-                    </LogoWrapper>
-                    Make offer
-                  </ButtonBottom>
-                </div>
-              </Bottom>
+              {renderButton()}
             </div>
           </ButtonContainer>
         </Main>
