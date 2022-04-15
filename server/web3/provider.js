@@ -1,19 +1,16 @@
 import { ethers } from "ethers";
 import { config } from "dotenv";
-import { getContractData as getContractDataFromDB } from "../db/db.js";
+import {
+  getContractData as getContractDataFromDB,
+  getSpecificContract,
+  setMint,
+  updateTokenData,
+} from "../db/db.js";
 import axios from "axios";
 config();
 
 let provider;
 let contracts = [];
-
-const handleTransferEvent = (from, to, tokenID, event) => {
-  if (from === "0x0000000000000000000000000000000000000000") {
-    setMint(event.address, to, tokenID);
-  } else {
-    updateTokenData(event.address, from, to, tokenID);
-  }
-};
 
 const web3Init = async () => {
   provider = new ethers.providers.InfuraProvider(
@@ -28,7 +25,27 @@ const web3Init = async () => {
     let contractInstance = new ethers.Contract(contract, abi, provider);
     contracts.push(contractInstance);
 
-    // contractInstance.on("Transfer", handleTransferEvent);
+    contractInstance.on("Transfer", handleTransferEvent);
+  }
+
+  console.log(contracts.length);
+};
+
+const handleTransferEvent = async (from, to, tokenID, event) => {
+  let tokenIDtoInt = tokenID.toNumber();
+
+  const { contract, abi } = await getSpecificContract(event.address);
+  let contractInstance = new ethers.Contract(contract, abi, provider);
+
+  let metadataUrl = await contractInstance.tokenURI(tokenIDtoInt);
+  let { data } = await axios.get(metadataUrl);
+
+  if (from === "0x0000000000000000000000000000000000000000") {
+    await setMint(event.address, to, tokenIDtoInt, metadataUrl, data);
+    console.log("Minting Succeed");
+  } else {
+    await updateTokenData(event.address, from, to, tokenIDtoInt);
+    console.log("Tx Succeed");
   }
 };
 

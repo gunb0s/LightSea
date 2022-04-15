@@ -11,6 +11,7 @@ router.post("/", async (req, res) => {
   const result = await checkRegistered(contractAddress);
   if (result) {
     res.send("Already Registred!");
+    return;
   }
 
   try {

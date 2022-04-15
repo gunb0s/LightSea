@@ -47,6 +47,7 @@ const dbConnect = async () => {
 // explore
 const getNFTMetadataURI = async () => {
   let result;
+  let resultArr = [];
   try {
     result = await db
       .collection("contract")
@@ -57,8 +58,12 @@ const getNFTMetadataURI = async () => {
   }
 
   if (result.length === 0) return result;
-  const { metadataUrls } = result[0];
-  return metadataUrls;
+  for (let arr of result) {
+    let { metadataUrls } = arr;
+    resultArr.push(...metadataUrls);
+  }
+
+  return resultArr;
 };
 
 const getNFTMetadata = async (metadataURIs) => {
@@ -137,25 +142,40 @@ const getContractData = async () => {
   return result;
 };
 
-const setMint = async (contract, to, tokenID) => {
+const getSpecificContract = async (address) => {
+  const result = await db
+    .collection("contract")
+    .find({ contract: address.toLowerCase() })
+    .toArray();
+  return result[0];
+};
+
+const setMint = async (contract, to, tokenID, metadataUrl, data) => {
   await db.collection("contract").updateOne(
     {
       contract: contract.toLowerCase(),
     },
     {
       $push: {
-        metadataUrls: "",
+        metadataUrls: metadataUrl,
       },
     }
   );
-  const data = {};
-  await db.collection("tokenData").insertOne(data);
+
+  const DBdata = {
+    contractAddress: contract.toLowerCase(),
+    owner: to.toLowerCase(),
+    tokenID,
+    metadataUrl,
+    metadata: data,
+  };
+  await db.collection("tokenData").insertOne(DBdata);
 };
 
 const updateTokenData = async (contract, from, to, tokenID) => {
   await db.collection("tokenData").updateOne(
     {
-      contract: contract.toLowerCase(),
+      contractAddress: contract.toLowerCase(),
       owner: from.toLowerCase(),
       tokenID,
     },
@@ -176,6 +196,7 @@ export {
   checkRegistered,
   regsiterToDB,
   getContractData,
+  getSpecificContract,
   setMint,
   updateTokenData,
 };
