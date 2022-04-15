@@ -20,7 +20,7 @@ const NFTCard = ({ nft }) => {
   };
 
   const CSS_cardLinkAnother = {
-    marginLeft: "90px",
+    marginLeft: "123px",
     fontWeight: "500",
     textDecoration: "none",
     color: "rgb(200,200,200)",
@@ -39,7 +39,8 @@ const NFTCard = ({ nft }) => {
     paddingTop: "0",
     paddingBottom: "0",
     marginTop: "2px",
-    fontSize: "23px",
+    marginBottom:"0",
+    fontSize: "17px",
     fontWeight: "700",
     wordBreak: "break-all",
     whiteSpace: "normal",
@@ -50,14 +51,24 @@ const NFTCard = ({ nft }) => {
     height: "300px",
   };
 
+  let NFTMetadataDescription ='...';
+  if(metadata.description.length>=53)
+  {
+    NFTMetadataDescription = metadata.description.slice(0,53).concat("...");
+  }
+  else{
+    NFTMetadataDescription = metadata.description;
+  }
+
   return (
     <Card className={styles.card}>
       <Card.Img style={cardImage} variant="top" src={metadata.image} />
       <Card.Body>
-        <Card.Title style={CSS_CollectionName}>{metadata.name}</Card.Title>
+        <Card.Title style={CSS_CollectionName}>LightSeaNFT [{tokenID}]</Card.Title>
         <Card.Text
           style={CSS_NFTAssetName}
-        >{`${metadata.name} ${tokenID}`}</Card.Text>
+        >{`${metadata.name}`}</Card.Text>
+        <span style={{fontSize:"5px", marginTop:"0",paddingTop:"0",color:"rgb(200,200,200)",lineHeight:"3px"}}>{NFTMetadataDescription}</span>
       </Card.Body>
       <ListGroup className={`list-group-flush ${styles.list}`}>
         <ListGroupItem>Top Bid</ListGroupItem>

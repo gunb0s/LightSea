@@ -53,10 +53,10 @@ const NADCHeaders = ({ name, tokenID }) => {
     <Header>
       <CollectionInfo>
         <CollectionDetail>
-          <CollectionLink>{name}</CollectionLink>
+          <CollectionLink>LightSeaNFT [{tokenID}]</CollectionLink>
         </CollectionDetail>
       </CollectionInfo>
-      <CollectionTitle>{`${name} ${tokenID}`}</CollectionTitle>
+      <CollectionTitle style={{color:"white"}}>{`${name}`}</CollectionTitle>
     </Header>
   );
 };
