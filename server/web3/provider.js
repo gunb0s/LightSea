@@ -75,8 +75,7 @@ const getContractData = async (address, abi) => {
     throw new Error(err);
   }
   contracts.push(contract);
-  contracts.on("Transfer", handleTransferEvent);
-
+  contract.on("Transfer", handleTransferEvent);
   return result;
 };
 

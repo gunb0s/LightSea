@@ -8,8 +8,11 @@ const router = express.Router();
 
 const getNFTs = async (req, res) => {
   const URIs = await getNFTMetadataURIFromDB();
-  const result = await getNFTMetadataFROMDB(URIs);
-  res.send(result);
+  if (URIs.length === 0) res.send("no result");
+  else {
+    const result = await getNFTMetadataFROMDB(URIs);
+    res.send(result);
+  }
 };
 
 router.get("/", getNFTs);

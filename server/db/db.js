@@ -55,6 +55,8 @@ const getNFTMetadataURI = async () => {
   } catch (err) {
     console.log("OMG!!!! ===>>>", err);
   }
+
+  if (result.length === 0) return result;
   const { metadataUrls } = result[0];
   return metadataUrls;
 };
@@ -102,7 +104,7 @@ const getAsset = async (account, id) => {
 const checkRegistered = async (address) => {
   const result = await db
     .collection("contract")
-    .find({ contract: "" })
+    .find({ contract: address })
     .toArray();
 
   if (result.length === 0) {

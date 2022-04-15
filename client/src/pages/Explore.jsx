@@ -11,6 +11,7 @@ const Explore = () => {
   const getNFTs = async () => {
     try {
       const { data } = await axios.get("http://localhost:8000/api/v1/nfts");
+      if (data === "no result") return;
       setNfts((prev) => {
         return [...data];
       });

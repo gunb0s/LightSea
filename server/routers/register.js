@@ -13,10 +13,11 @@ router.post("/", async (req, res) => {
     res.send("Already Registred!");
   }
 
-  abi = JSON.parse(abi);
   try {
+    abi = JSON.parse(abi);
     const result = await getContractData(contractAddress, abi);
     await regsiterToDB(result, contractAddress, abi);
+
     res.send("success");
   } catch (err) {
     res.send("address or abi is not corrected");
