@@ -1,15 +1,35 @@
 import { ethers } from "ethers";
 import { config } from "dotenv";
+import { getContractData as getContractDataFromDB } from "../db/db.js";
 import axios from "axios";
 config();
 
 let provider;
+let contracts = [];
 
-const web3Init = () => {
+const handleTransferEvent = (from, to, tokenID, event) => {
+  if (from === "0x0000000000000000000000000000000000000000") {
+    setMint(event.address, to, tokenID);
+  } else {
+    updateTokenData(event.address, from, to, tokenID);
+  }
+};
+
+const web3Init = async () => {
   provider = new ethers.providers.InfuraProvider(
     "ropsten",
     process.env.INFURA_API_KEY
   );
+
+  const contractData = await getContractDataFromDB();
+
+  for (let data of contractData) {
+    const { contract, abi } = data;
+    let contractInstance = new ethers.Contract(contract, abi, provider);
+    contracts.push(contractInstance);
+
+    // contractInstance.on("Transfer", handleTransferEvent);
+  }
 };
 
 const getBalance = async (address) => {
@@ -26,9 +46,9 @@ const getContractData = async (address, abi) => {
     metadataUrls: [],
     tokenData: [],
   };
-
+  let contract;
   try {
-    const contract = new ethers.Contract(address, abi, provider);
+    contract = new ethers.Contract(address, abi, provider);
     let tokenID = 1;
     while (true) {
       try {
@@ -54,6 +74,8 @@ const getContractData = async (address, abi) => {
   } catch (err) {
     throw new Error(err);
   }
+  contracts.push(contract);
+  contracts.on("Transfer", handleTransferEvent);
 
   return result;
 };

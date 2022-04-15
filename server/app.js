@@ -19,9 +19,13 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/v1", indexRouter);
 
+const init = async () => {
+  await dbConnect();
+  await web3Init();
+};
+
 app.listen(PORT, () => {
-  dbConnect();
-  web3Init();
+  init();
   console.log(`Listening to PORT: ${PORT}...`);
 });
 // app.post("/mypage", (req, res) => {

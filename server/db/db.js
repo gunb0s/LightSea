@@ -128,6 +128,41 @@ const regsiterToDB = async (data, address, abi) => {
   }
 };
 
+const getContractData = async () => {
+  const result = await db.collection("contract").find().toArray();
+  return result;
+};
+
+const setMint = async (contract, to, tokenID) => {
+  await db.collection("contract").updateOne(
+    {
+      contract: contract.toLowerCase(),
+    },
+    {
+      $push: {
+        metadataUrls: "",
+      },
+    }
+  );
+  const data = {};
+  await db.collection("tokenData").insertOne(data);
+};
+
+const updateTokenData = async (contract, from, to, tokenID) => {
+  await db.collection("tokenData").updateOne(
+    {
+      contract: contract.toLowerCase(),
+      owner: from.toLowerCase(),
+      tokenID,
+    },
+    {
+      $set: {
+        owner: to.toLowerCase(),
+      },
+    }
+  );
+};
+
 export {
   dbConnect,
   getNFTMetadataURI,
@@ -136,4 +171,7 @@ export {
   getAsset,
   checkRegistered,
   regsiterToDB,
+  getContractData,
+  setMint,
+  updateTokenData,
 };
