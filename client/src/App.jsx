@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
 import Detail from "./pages/Detail";
+import Register from "./pages/Register";
 
 export const Context = createContext();
 
@@ -26,6 +27,7 @@ const App = () => {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/account/:address" element={<Account />} />
           <Route path="/assets/:contract/:tokenId" element={<Detail />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Context.Provider>
     </>

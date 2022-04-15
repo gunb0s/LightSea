@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
 import { config } from "dotenv";
+import axios from "axios";
 config();
 
 let provider;
@@ -20,4 +21,41 @@ const getBalance = async (address) => {
   }
 };
 
-export { web3Init, getBalance };
+const getContractData = async (address, abi) => {
+  let result = {
+    metadataUrls: [],
+    tokenData: [],
+  };
+
+  try {
+    const contract = new ethers.Contract(address, abi, provider);
+    let tokenID = 1;
+    while (true) {
+      try {
+        let metadataUrl = await contract.tokenURI(tokenID);
+        let owner = await contract.ownerOf(tokenID);
+        let { data } = await axios.get(metadataUrl);
+
+        let DBdata = {
+          tokenID,
+          metadataUrl,
+          owner: owner.toLowerCase(),
+          contractAddress: address,
+          metadata: data,
+        };
+
+        result.metadataUrls.push(metadataUrl);
+        result.tokenData.push(DBdata);
+        tokenID++;
+      } catch (err) {
+        break;
+      }
+    }
+  } catch (err) {
+    throw new Error(err);
+  }
+
+  return result;
+};
+
+export { web3Init, getBalance, getContractData };

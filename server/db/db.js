@@ -97,4 +97,43 @@ const getAsset = async (account, id) => {
   return result[0];
 };
 
-export { dbConnect, getNFTMetadataURI, getNFTMetadata, getAccount, getAsset };
+const checkRegistered = async (address) => {
+  const result = await db
+    .collection("contract")
+    .find({ contract: "" })
+    .toArray();
+
+  if (result.length === 0) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+const regsiterToDB = async (data, address, abi) => {
+  const { metadataUrls, tokenData } = data;
+
+  try {
+    await db.collection("contract").insertOne({
+      contract: address,
+      metadataUrls,
+      abi,
+    });
+
+    for (let datum of tokenData) {
+      await db.collection("tokenData").insertOne(datum);
+    }
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export {
+  dbConnect,
+  getNFTMetadataURI,
+  getNFTMetadata,
+  getAccount,
+  getAsset,
+  checkRegistered,
+  regsiterToDB,
+};

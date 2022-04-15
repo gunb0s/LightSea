@@ -57,7 +57,9 @@ const Navigation = () => {
               </Link>
             </li>
             <li className={styles.leftItem}>
-              <a className={styles.link}>Stats</a>
+              <Link className={styles.link} to="/register">
+                Register
+              </Link>
             </li>
             <li className={styles.leftItem}>
               <a className={styles.link}>Resources</a>
