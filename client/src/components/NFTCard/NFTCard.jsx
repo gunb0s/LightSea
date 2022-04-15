@@ -33,7 +33,6 @@ const NFTCard = ({ nft }) => {
   const CSS_CollectionName = {
     marginBottom: "2px",
     fontSize: "14px",
-    wordBreak: "break-all",
   };
   const CSS_NFTAssetName = {
     paddingTop: "0",
@@ -41,8 +40,6 @@ const NFTCard = ({ nft }) => {
     marginTop: "2px",
     fontSize: "23px",
     fontWeight: "700",
-    wordBreak: "break-all",
-    whiteSpace: "normal",
   };
 
   const cardImage = {
@@ -50,10 +47,16 @@ const NFTCard = ({ nft }) => {
     height: "300px",
   };
 
+  const cardBody = {
+    height: "120px",
+    display: "flex",
+    flexDirection: "column",
+  };
+
   return (
     <Card className={styles.card}>
       <Card.Img style={cardImage} variant="top" src={metadata.image} />
-      <Card.Body>
+      <Card.Body style={cardBody}>
         <Card.Title style={CSS_CollectionName}>{metadata.name}</Card.Title>
         <Card.Text
           style={CSS_NFTAssetName}
