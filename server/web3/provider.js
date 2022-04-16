@@ -10,7 +10,7 @@ import axios from "axios";
 config();
 
 let provider;
-let contracts = [];
+// let contracts = [];
 
 const web3Init = async () => {
   provider = new ethers.providers.InfuraProvider(
@@ -23,19 +23,16 @@ const web3Init = async () => {
   for (let data of contractData) {
     const { contract, abi } = data;
     let contractInstance = new ethers.Contract(contract, abi, provider);
-    contracts.push(contractInstance);
+    // contracts.push(contractInstance);
 
     contractInstance.on("Transfer", handleTransferEvent);
   }
 
-  console.log(contracts.length);
+  // console.log(contracts.length);
 };
 
 const trasfer = async (ca, abi, owner, buyer, tokenID) => {
-  const wallet = new ethers.Wallet(
-    "dc79fff6e9bed0cd11c8e2ddc4dac8eb73bca36cbcc6a5b1aade153ebdc72382",
-    provider
-  );
+  const wallet = new ethers.Wallet(process.env.MASTER_PRIVATE_KEY, provider);
 
   const signer = wallet.connect(provider);
   const contract = new ethers.Contract(ca, abi, signer);
@@ -105,7 +102,7 @@ const getContractData = async (address, abi) => {
   } catch (err) {
     throw new Error(err);
   }
-  contracts.push(contract);
+  // contracts.push(contract);
   contract.on("Transfer", handleTransferEvent);
   return result;
 };
