@@ -33,7 +33,7 @@ export const Button = styled.button`
   font-family: inherit;
 `;
 
-const NADCPriceHistory = () => {
+const NADCPriceHistory = ({ salesHistory }) => {
   return (
     <Container>
       <Button>
@@ -41,7 +41,25 @@ const NADCPriceHistory = () => {
         <span style={{ marginLeft: "10px" }}>Price History</span>
       </Button>
       <Body>
-        <ContentContainer>TobeFilled</ContentContainer>
+        <ContentContainer>
+          {salesHistory.length === 0 ? (
+            "No History"
+          ) : (
+            <div style={{ marginBottom: "1rem" }}>
+              {salesHistory.map((elem, idx) => (
+                <div key={idx}>
+                  <div>from: {elem.from.slice(0, 5)}...</div>
+                  <div>to: {elem.to.slice(0, 5)}...</div>
+                  <div>price: {elem.price}</div>
+                  <div>
+                    Date: {parseInt((Date.now() - elem.date) / 86400000)} days
+                    before
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </ContentContainer>
       </Body>
     </Container>
   );

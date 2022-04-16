@@ -43,7 +43,15 @@ const getNFTMetadataURI = async () => {
     resultArr.push(...metadataUrls);
   }
 
-  return resultArr;
+  if (resultArr.length >= 16) {
+    const shulffle = (arr) => {
+      arr.sort(() => Math.random - 0.5);
+    };
+    shulffle(resultArr);
+    return resultArr.slice(0, 16);
+  } else {
+    return resultArr;
+  }
 };
 
 const getNFTMetadata = async (metadataURIs) => {
@@ -247,6 +255,17 @@ const getPrice = async (ca, tokenID) => {
   return result[0];
 };
 
+const searchTokenDataWithName = async (search) => {
+  const result = await db
+    .collection("tokenData")
+    .find({
+      "metadata.name": { $regex: `.*${search}.*` },
+    })
+    .toArray();
+
+  return result;
+};
+
 export {
   dbConnect,
   getNFTMetadataURI,
@@ -263,4 +282,5 @@ export {
   getPrice,
   closeSale,
   buy,
+  searchTokenDataWithName,
 };

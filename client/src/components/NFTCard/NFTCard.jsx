@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import styles from "./NFTCard.module.css";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const EthPrice = styled.div`
   display: flex;
@@ -13,11 +14,27 @@ const EthPrice = styled.div`
 `;
 
 const NFTCard = ({ nft }) => {
-  const { contractAddress, metadata, metadataUrl, owner, tokenID } = nft;
+  const { contractAddress, metadata, tokenID, onSale } = nft;
+  const [price, setPrice] = useState(0);
   const navigate = useNavigate();
   const onCardLinkClik = () => {
     navigate(`/assets/${contractAddress}/${tokenID}`);
   };
+
+  useEffect(() => {
+    const getprice = async () => {
+      if (onSale) {
+        const {
+          data: { price },
+        } = await axios.get(
+          `http://localhost:8000/api/v1/sale/${contractAddress}/${tokenID}`
+        );
+        setPrice(price);
+      }
+    };
+
+    getprice();
+  }, []);
 
   const CSS_cardLinkAnother = {
     marginLeft: "123px",
@@ -81,7 +98,7 @@ const NFTCard = ({ nft }) => {
         </span>
       </Card.Body>
       <ListGroup className={`list-group-flush ${styles.list}`}>
-        <ListGroupItem>Top Bid</ListGroupItem>
+        <ListGroupItem>{onSale ? "on Sale" : "Not on Sale"}</ListGroupItem>
         <ListGroupItem>
           <EthPrice>
             <img
@@ -92,10 +109,9 @@ const NFTCard = ({ nft }) => {
                 height: "14px",
               }}
             ></img>
-            <div style={{ marginLeft: "0.3em" }}>100</div>
+            <div style={{ marginLeft: "0.3em" }}>{price}</div>
           </EthPrice>
         </ListGroupItem>
-        <ListGroupItem>7 days left</ListGroupItem>
       </ListGroup>
       <Card.Body>
         <Card.Link style={CSS_cardLink} onClick={onCardLinkClik}>

@@ -49,7 +49,7 @@ const NFTAssetDetailCard = ({ nft }) => {
         <ItemWrapper>
           <ItemSummary>
             <NADCImage image={metadata.image} />
-            <NADCSummary />
+            <NADCSummary metadata={metadata} />
           </ItemSummary>
           <ItemMain>
             <NADCHeaders name={metadata.name} tokenID={tokenID} />
@@ -63,7 +63,7 @@ const NFTAssetDetailCard = ({ nft }) => {
               />
             </Frame>
             <Frame>
-              <NADCPriceHistory />
+              <NADCPriceHistory salesHistory={salesHistory} />
             </Frame>
             <div>
               <NADCListings />

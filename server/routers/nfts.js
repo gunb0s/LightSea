@@ -2,6 +2,7 @@ import express from "express";
 import {
   getNFTMetadataURI as getNFTMetadataURIFromDB,
   getNFTMetadata as getNFTMetadataFROMDB,
+  searchTokenDataWithName,
 } from "../db/db.js";
 
 const router = express.Router();
@@ -16,5 +17,10 @@ const getNFTs = async (req, res) => {
 };
 
 router.get("/", getNFTs);
+router.get("/:search", async (req, res) => {
+  const result = await searchTokenDataWithName(req.params.search);
+
+  res.send(result);
+});
 
 export default router;
