@@ -6,8 +6,8 @@ const ContainerWrapper = styled.div`
   height: 100%;
   background-color: rgb(35, 39, 40);
 
-  @media(max-width: 1200px) {
-    width: 100%
+  @media (max-width: 1200px) {
+    width: 100%;
   }
 `;
 
@@ -18,7 +18,7 @@ const Container = styled.div`
   background-position: top center;
   height: 100%;
   width: 100%;
-  
+
   position: relative;
   display: flex;
   flex-direction: column;
@@ -66,8 +66,8 @@ const DescTitle = styled.div`
   white-space: nowrap;
   user-select: none;
 
-  @media( max-width: 1200px ) {
-    font-size: 2vw
+  @media (max-width: 1200px) {
+    font-size: 2vw;
   }
 `;
 
@@ -88,7 +88,7 @@ const Desc = styled.pre`
   text-align: center;
   user-select: none;
 
-  @media( max-width: 1200px ) {
+  @media (max-width: 1200px) {
     width: 100%;
     font-size: 2vw;
   }
@@ -163,7 +163,9 @@ const MainLeft = () => {
   return (
     <ContainerWrapper>
       <Container>
-        <TitleWrapper>{/* <Title>LIGHTSEA</Title> */}</TitleWrapper>
+        <TitleWrapper>
+          <Title>LIGHTSEA</Title>
+        </TitleWrapper>
         <DescWrapper>
           <DescTitle>Space Travel NFT Marketplace For Space Traveler</DescTitle>
           <Desc>
