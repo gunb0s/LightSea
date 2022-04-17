@@ -51,7 +51,7 @@ export const ContentContainer = styled.div`
   border-bottom-right-radius: 10px;
 `;
 
-const NADCSummary = () => {
+const NADCSummary = ({ metadata }) => {
   return (
     <Frame>
       <div>
@@ -62,7 +62,7 @@ const NADCSummary = () => {
               <Name>Description</Name>
             </Button>
             <Body>
-              <ContentContainer>TobeFilled</ContentContainer>
+              <ContentContainer>{metadata.description}</ContentContainer>
             </Body>
           </DivContainer>
         </div>
@@ -73,7 +73,20 @@ const NADCSummary = () => {
               <Name>Properties</Name>
             </Button>
             <Body>
-              <ContentContainer>TobeFilled</ContentContainer>
+              <ContentContainer>
+                {metadata.attributes.length === 0 ? (
+                  "No attributes"
+                ) : (
+                  <div>
+                    {metadata.attributes.map((elem, idx) => (
+                      <div style={{ marginBottom: "1rem" }} key={idx}>
+                        <div>Type: {elem.trait_type}</div>
+                        <div>Value: {elem.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </ContentContainer>
             </Body>
           </DivContainer>
         </div>

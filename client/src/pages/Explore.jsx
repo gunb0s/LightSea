@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Navigation from "../components/Navigation/Navigation";
 import Filter from "../components/Filter/Filter";
 import NFTCardList from "../components/NFTCardList/NFTCardList";
@@ -6,11 +7,18 @@ import Footer from "../components/Footer/Footer";
 import axios from "axios";
 
 const Explore = () => {
+  const { search } = useParams();
   const [nfts, setNfts] = useState([]);
 
-  const getNFTs = async () => {
+  const getNFTs = async (search) => {
     try {
-      const { data } = await axios.get("http://localhost:8000/api/v1/nfts");
+      let url =
+        search === undefined
+          ? "http://localhost:8000/api/v1/nfts"
+          : `http://localhost:8000/api/v1/nfts/${search}`;
+
+      const { data } = await axios.get(url);
+      if (data === "no result") return;
       setNfts((prev) => {
         return [...data];
       });
@@ -20,8 +28,12 @@ const Explore = () => {
   };
 
   useEffect(() => {
-    getNFTs();
-  }, []);
+    if (search === undefined) {
+      getNFTs();
+    } else {
+      getNFTs(search);
+    }
+  }, [search]);
 
   return (
     <div style={{ backgroundColor: "rgb(35, 39, 40)" }}>

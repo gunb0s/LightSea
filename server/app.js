@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import morgan from "morgan";
 import indexRouter from "./routers/index.js";
 import { dbConnect } from "./db/db.js";
+import { web3Init } from "./web3/provider.js";
 // import projectContractList from '../Resource/jsondata/contract.json'
 
 const PORT = 8000;
@@ -19,8 +19,13 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/v1", indexRouter);
 
+const init = async () => {
+  await dbConnect();
+  await web3Init();
+};
+
 app.listen(PORT, () => {
-  dbConnect();
+  init();
   console.log(`Listening to PORT: ${PORT}...`);
 });
 // app.post("/mypage", (req, res) => {

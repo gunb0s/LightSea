@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import styles from "./NFTCard.module.css";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const EthPrice = styled.div`
   display: flex;
@@ -13,11 +14,27 @@ const EthPrice = styled.div`
 `;
 
 const NFTCard = ({ nft }) => {
-  const { contractAddress, metadata, metadataUrl, owner, tokenID } = nft;
+  const { contractAddress, metadata, tokenID, onSale } = nft;
+  const [price, setPrice] = useState(0);
   const navigate = useNavigate();
   const onCardLinkClik = () => {
     navigate(`/assets/${contractAddress}/${tokenID}`);
   };
+
+  useEffect(() => {
+    const getprice = async () => {
+      if (onSale) {
+        const {
+          data: { price },
+        } = await axios.get(
+          `http://localhost:8000/api/v1/sale/${contractAddress}/${tokenID}`
+        );
+        setPrice(price);
+      }
+    };
+
+    getprice();
+  }, []);
 
   const CSS_cardLinkAnother = {
     marginLeft: "123px",
@@ -33,17 +50,14 @@ const NFTCard = ({ nft }) => {
   const CSS_CollectionName = {
     marginBottom: "2px",
     fontSize: "14px",
-    wordBreak: "break-all",
   };
   const CSS_NFTAssetName = {
     paddingTop: "0",
     paddingBottom: "0",
     marginTop: "2px",
-    marginBottom:"0",
+    marginBottom: "0",
     fontSize: "17px",
     fontWeight: "700",
-    wordBreak: "break-all",
-    whiteSpace: "normal",
   };
 
   const cardImage = {
@@ -51,12 +65,15 @@ const NFTCard = ({ nft }) => {
     height: "300px",
   };
 
-  let NFTMetadataDescription ='...';
-  if(metadata.description.length>=53)
-  {
-    NFTMetadataDescription = metadata.description.slice(0,53).concat("...");
-  }
-  else{
+  const cardBody = {
+    height: "120px",
+    display: "flex",
+    flexDirection: "column",
+  };
+  let NFTMetadataDescription = "...";
+  if (metadata.description.length >= 53) {
+    NFTMetadataDescription = metadata.description.slice(0, 53).concat("...");
+  } else {
     NFTMetadataDescription = metadata.description;
   }
 
@@ -64,14 +81,24 @@ const NFTCard = ({ nft }) => {
     <Card className={styles.card}>
       <Card.Img style={cardImage} variant="top" src={metadata.image} />
       <Card.Body>
-        <Card.Title style={CSS_CollectionName}>LightSeaNFT [{tokenID}]</Card.Title>
-        <Card.Text
-          style={CSS_NFTAssetName}
-        >{`${metadata.name}`}</Card.Text>
-        <span style={{fontSize:"5px", marginTop:"0",paddingTop:"0",color:"rgb(200,200,200)",lineHeight:"3px"}}>{NFTMetadataDescription}</span>
+        <Card.Title style={CSS_CollectionName}>
+          LightSeaNFT [{tokenID}]
+        </Card.Title>
+        <Card.Text style={CSS_NFTAssetName}>{`${metadata.name}`}</Card.Text>
+        <span
+          style={{
+            fontSize: "5px",
+            marginTop: "0",
+            paddingTop: "0",
+            color: "rgb(200,200,200)",
+            lineHeight: "3px",
+          }}
+        >
+          {NFTMetadataDescription}
+        </span>
       </Card.Body>
       <ListGroup className={`list-group-flush ${styles.list}`}>
-        <ListGroupItem>Top Bid</ListGroupItem>
+        <ListGroupItem>{onSale ? "on Sale" : "Not on Sale"}</ListGroupItem>
         <ListGroupItem>
           <EthPrice>
             <img
@@ -82,10 +109,9 @@ const NFTCard = ({ nft }) => {
                 height: "14px",
               }}
             ></img>
-            <div style={{ marginLeft: "0.3em" }}>100</div>
+            <div style={{ marginLeft: "0.3em" }}>{price}</div>
           </EthPrice>
         </ListGroupItem>
-        <ListGroupItem>7 days left</ListGroupItem>
       </ListGroup>
       <Card.Body>
         <Card.Link style={CSS_cardLink} onClick={onCardLinkClik}>

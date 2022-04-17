@@ -38,7 +38,7 @@ const Login = () => {
       }}
     >
       <Navigation />
-      <Container style={{ flex: "1 1 0" }}>
+      <Container>
         <Main>
           <WalletLogin />
         </Main>
