@@ -12,7 +12,7 @@ const ContainerWrapper = styled.div`
 `;
 
 const Container = styled.div`
-  background-image: url("/sampleImage/Resource/MainBG.jpg");
+  background-image: url("/sampleImage/Resource/MainBG.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
@@ -140,7 +140,7 @@ const Gallery = styled.div`
 `;
 
 const NFT = styled.img.attrs((props) => ({
-  src: `sampleImage/Resource/${props.idx}.png`,
+  src: `sampleImage/Resource/${props.idx}.jpg`,
   alt: "nft",
 }))`
   width: 260px;
