@@ -7,7 +7,6 @@ import Navigation from "../components/Navigation/Navigation";
 const ContainerWrapper = styled.div`
   width: 100%;
   margin: 0px;
-  height: 410vh;
   /* background-color: rgb(35, 39, 40); */
   background-color: rgb(20,20,20);
 `;

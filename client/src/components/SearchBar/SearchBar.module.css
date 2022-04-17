@@ -29,6 +29,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  cursor: pointer;
 }
 
 .serachInput {
@@ -39,4 +40,17 @@
   font-size: inherit;
   line-height: inherit;
   min-height: inherit;
+}
+@media (max-width: 1040px) {
+  .search {
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+  .serachInput {
+    display: none;
+  }
+  .searchIcon {
+    color: white;
+  }
 }

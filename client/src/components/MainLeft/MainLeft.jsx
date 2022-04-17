@@ -5,16 +5,20 @@ const ContainerWrapper = styled.div`
   width: 80vw;
   height: 100%;
   background-color: rgb(35, 39, 40);
+
+  @media(max-width: 1200px) {
+    width: 100%
+  }
 `;
 
 const Container = styled.div`
   background-image: url("/sampleImage/Resource/MainBG.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  /* background-position: center center; */
+  background-position: top center;
   height: 100%;
   width: 100%;
-
+  
   position: relative;
   display: flex;
   flex-direction: column;
@@ -48,7 +52,7 @@ const DescWrapper = styled.div`
 
 const DescTitle = styled.div`
   color: white;
-  font-size: 2rem;
+  font-size: 1.5vw;
   letter-spacing: 0.5rem;
   font-family: "Englisgh Gilroy-Light";
   font-weight: 200;
@@ -61,15 +65,19 @@ const DescTitle = styled.div`
   align-items: center;
   white-space: nowrap;
   user-select: none;
+
+  @media( max-width: 1200px ) {
+    font-size: 2vw
+  }
 `;
 
 const Desc = styled.pre`
   color: rgb(100, 100, 100);
-  font-size: 2rem;
+  font-size: 1.8vw;
   font-family: "Korean Cafe24SsurroundAir";
   font-weight: 100;
   letter-spacing: 0.2rem;
-  line-height: 5rem;
+  line-height: 3.7vw;
   width: 80%;
   padding-top: 1rem;
 
@@ -79,6 +87,11 @@ const Desc = styled.pre`
 
   text-align: center;
   user-select: none;
+
+  @media( max-width: 1200px ) {
+    width: 100%;
+    font-size: 2vw;
+  }
 `;
 
 const GalleryContainer = styled.div`
@@ -95,7 +108,7 @@ const GalleryTitleWrapper = styled.div`
 `;
 const GalleryTitle = styled.span`
   color: white;
-  font-size: 4rem;
+  font-size: 3.5vw;
   font-family: "Englisgh Gilroy-Light";
   font-weight: 200;
   letter-spacing: 3rem;
