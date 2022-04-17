@@ -57,7 +57,7 @@ const NADCTradeButtonNotOwner = ({ onSale, ca, owner, tokenID, price }) => {
         value: ethers.utils.parseEther(price),
       });
 
-      await axios.post("http://localhost:8000/api/v1/tx/buy", {
+      await axios.post("https://light-sea-server.herokuapp.com/api/v1/tx/buy", {
         price,
         ca,
         tokenID,

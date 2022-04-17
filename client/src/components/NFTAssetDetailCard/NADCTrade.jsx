@@ -62,7 +62,7 @@ const NADCTrade = ({ owner, ca, tokenID, onSale, salesHistory }) => {
   useEffect(() => {
     const getPrice = async () => {
       const response = await axios.get(
-        `http://localhost:8000/api/v1/sale/${ca}/${tokenID}`
+        `https://light-sea-server.herokuapp.com/api/v1/sale/${ca}/${tokenID}`
       );
 
       const { price: priceFromDB } = response.data;

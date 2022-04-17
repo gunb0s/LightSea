@@ -14,8 +14,8 @@ const Explore = () => {
     try {
       let url =
         search === undefined
-          ? "http://localhost:8000/api/v1/nfts"
-          : `http://localhost:8000/api/v1/nfts/${search}`;
+          ? "https://light-sea-server.herokuapp.com/api/v1/nfts"
+          : `https://light-sea-server.herokuapp.com/api/v1/nfts/${search}`;
 
       const { data } = await axios.get(url);
       if (data === "no result") return;

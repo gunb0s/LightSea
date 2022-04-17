@@ -64,10 +64,13 @@ const Register = () => {
   const handleClick = async () => {
     if (contractAddress === "" || abi === "") return;
 
-    const result = await axios.post("http://localhost:8000/api/v1/register", {
-      contractAddress,
-      abi,
-    });
+    const result = await axios.post(
+      "https://light-sea-server.herokuapp.com/api/v1/register",
+      {
+        contractAddress,
+        abi,
+      }
+    );
 
     setContractAddress((prev) => "");
     setAbi((prev) => "");

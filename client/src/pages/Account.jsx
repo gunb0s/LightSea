@@ -15,7 +15,7 @@ const Account = () => {
   const getNFTOfAccount = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8000/api/v1/account/${address}`
+        `https://light-sea-server.herokuapp.com/api/v1/account/${address}`
       );
       setNfts((prev) => data);
     } catch (err) {

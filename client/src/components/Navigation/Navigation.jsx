@@ -29,7 +29,7 @@ const Navigation = () => {
       navigate("/login");
     } else {
       const { data } = await axios.get(
-        `http://localhost:8000/api/v1/balance/${address}`
+        `https://light-sea-server.herokuapp.com/api/v1/balance/${address}`
       );
       setShow(true);
       setBalance((prev) => data);

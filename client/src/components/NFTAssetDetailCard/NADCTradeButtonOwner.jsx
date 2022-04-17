@@ -50,29 +50,35 @@ const NADCTradeButtonOwner = ({ onSale, ca, owner, tokenID }) => {
 
   const handleClick = async () => {
     const { data } = await axios.get(
-      `http://localhost:8000/api/v1/contracts/${ca}`
+      `https://light-sea-server.herokuapp.com/api/v1/contracts/${ca}`
     );
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const contract = new ethers.Contract(ca, data.abi, provider.getSigner());
 
     if (onSale) {
-      await axios.post("http://localhost:8000/api/v1/tx/close", {
-        price,
-        ca,
-        tokenID,
-      });
+      await axios.post(
+        "https://light-sea-server.herokuapp.com/api/v1/tx/close",
+        {
+          price,
+          ca,
+          tokenID,
+        }
+      );
 
       await contract.approve(
         "0x0000000000000000000000000000000000000000",
         parseInt(tokenID)
       );
     } else {
-      await axios.post("http://localhost:8000/api/v1/tx/sell", {
-        price,
-        ca,
-        tokenID,
-      });
+      await axios.post(
+        "https://light-sea-server.herokuapp.com/api/v1/tx/sell",
+        {
+          price,
+          ca,
+          tokenID,
+        }
+      );
 
       await contract.approve(
         "0xEb42394Da7D7C1Bf3C25ad7b9B6F332a8dF9C511",

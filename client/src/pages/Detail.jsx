@@ -25,7 +25,7 @@ const Detail = () => {
   const getNFTDetail = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8000/api/v1/asset/${contract}/${tokenId}`
+        `https://light-sea-server.herokuapp.com/api/v1/asset/${contract}/${tokenId}`
       );
       setNftData((prev) => data);
     } catch (err) {
