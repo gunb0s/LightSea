@@ -2,9 +2,9 @@ import { MongoClient } from "mongodb";
 import { config } from "dotenv";
 config();
 
-// const URL = `mongodb+srv://Lightsea:${process.env.DB_PASSWORD}@lightseadb.35jin.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-const URL =
-  "mongodb+srv://gunbos:gunbos@cluster0.zns0g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const URL = `mongodb+srv://Lightsea:${process.env.DB_PASSWORD}@lightseadb.35jin.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+// const URL =
+//   "mongodb+srv://gunbos:gunbos@cluster0.zns0g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 let db;
 let mongoClient;
