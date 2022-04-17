@@ -12,7 +12,7 @@ const ContainerWrapper = styled.div`
 `;
 
 const Container = styled.div`
-  background-image: url("/sampleImage/Resource/MainBG.png");
+  background-image: url("/sampleImage/Resource/MainBG.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
@@ -28,7 +28,7 @@ const Container = styled.div`
 const TitleWrapper = styled.div`
   position: relative;
   /* top: 10%; */
-  margin-top: 500px;
+  margin-top: 700px;
 `;
 const Title = styled.span`
   color: white;
@@ -163,9 +163,7 @@ const MainLeft = () => {
   return (
     <ContainerWrapper>
       <Container>
-        <TitleWrapper>
-          <Title>LIGHTSEA</Title>
-        </TitleWrapper>
+        <TitleWrapper>{/* <Title>LIGHTSEA</Title> */}</TitleWrapper>
         <DescWrapper>
           <DescTitle>Space Travel NFT Marketplace For Space Traveler</DescTitle>
           <Desc>
