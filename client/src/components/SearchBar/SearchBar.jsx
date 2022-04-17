@@ -17,8 +17,7 @@ const SearchBar = () => {
             type="text"
             placeholder="Search items, collections, and accounts"
             value={searchText}
-            onChange={(e) => {
-              setSearchText((prev) => e.target.value);
+            onChange={(e) => {setSearchText((prev) => e.target.value);
             }}
           ></input>
         </div>
