@@ -140,7 +140,7 @@ const Gallery = styled.div`
 `;
 
 const NFT = styled.img.attrs((props) => ({
-  src: `sampleImage/Resource/${props.idx}.jpg`,
+  src: `sampleImage/Resource/${props.idx}.png`,
   alt: "nft",
 }))`
   width: 260px;
