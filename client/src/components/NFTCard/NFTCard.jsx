@@ -27,7 +27,7 @@ const NFTCard = ({ nft }) => {
         const {
           data: { price },
         } = await axios.get(
-          `http://localhost:8000/api/v1/sale/${contractAddress}/${tokenID}`
+          `https://light-sea-server.herokuapp.com/api/v1/sale/${contractAddress}/${tokenID}`
         );
         setPrice(price);
       }
