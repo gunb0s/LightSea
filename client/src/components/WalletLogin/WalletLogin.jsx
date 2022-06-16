@@ -153,6 +153,10 @@ const WalletLogin = () => {
               {/* 메타마스크 지갑 연결 부분 */}
               <WalletButton
                 onClick={async () => {
+                  if (window.ethereum === undefined) {
+                    return;
+                  }
+
                   const accounts = await window.ethereum.request({
                     method: "eth_requestAccounts",
                   });

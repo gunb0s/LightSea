@@ -13,6 +13,10 @@ const App = () => {
   const [address, setAddress] = useState("");
 
   useEffect(() => {
+    if (window.ethereum === undefined) {
+      return;
+    }
+
     window.ethereum.on("accountsChanged", function (accounts) {
       setAddress(window.ethereum.selectedAddress);
     });
